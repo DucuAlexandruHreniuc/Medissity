@@ -144,110 +144,111 @@ function filter3() {
 </nav>
 
 <center>
-<div class="container" >
-  <br>
-  <br>
-  <br>
-  <h2 th:text="'Schimbă numele diagnosticului ' + ${diagnostic.name}"></h2>
-  <form method="post" th:action="@{/diagnostics/edit}">
-    <input type="hidden" th:value="${diagnostic.id}" name="diagnostic_id">
-    <div class="mb-3">
-<!--      <label for="name" class="form-label">Nume</label>-->
-      <input style="margin: 10px;width: 700px;" th:value="${diagnostic.name}" type="text" class="form-control" id="name" aria-describedby="name" name="diagnostic_name">
-      <div id="nameHelp" class="form-text">(Noul nume al diagnosticului)</div>
-    </div>
-    <button type="submit" class="btn btn-primary">Confirmare</button><br>
-  </form>
-  <br>
-  <hr class="solid">
+  <div class="container" >
+    <br>
+    <br>
+    <br>
+    <h2> Schimbă numele diagnosticului</h2>
+    <h2 style="text-decoration:underline"  th:text="${diagnostic.name}"></h2>
+    <form method="post" th:action="@{/diagnostics/edit}">
+      <input type="hidden" th:value="${diagnostic.id}" name="diagnostic_id">
+      <div class="mb-3">
+        <!--      <label for="name" class="form-label">Nume</label>-->
+        <input style="margin: 10px;width: 700px;" th:value="${diagnostic.name}" type="text" class="form-control" id="name" aria-describedby="name" name="diagnostic_name">
+        <div id="nameHelp" class="form-text">(Noul nume al diagnosticului)</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Confirmare</button><br>
+    </form>
+    <br>
+    <hr class="solid">
 
 
-<br>
-  <form name='f' method="POST" th:action="@{|/diagnostics/${diagnostic.id}/assignAll|}">
-  <h3 th:text="'Adaugă analize pentru:  ' + ${diagnostic.name}"></h3><i class="fa-solid fa-syringe fa-lg" style="color:#60ac44"></i>
-<!--  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Cauta analize...">-->
-  <input type="text" id="search3" name="search3" style="margin: 10px;width: 670px;" onkeyup="filter3()" placeholder="Caută analize...">
+    <br>
+    <form name='f' method="POST" th:action="@{|/diagnostics/${diagnostic.id}/assignAll|}">
+      <h3 th:text="'Atribuie analize pentru:  ' + ${diagnostic.name}"></h3><i class="fa-solid fa-syringe fa-lg" style="color:#60ac44"></i>
+      <!--  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Cauta analize...">-->
+      <input type="text" id="search3" name="search3" style="margin: 10px;width: 670px;" onkeyup="filter3()" placeholder="Caută analize...">
 
 
-    <select id="select3" class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalTests">
+      <select id="select3" class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalTests">
 
-      <option th:each="medicalTest : ${unassignedMedicalTests}"
-              th:value="${medicalTest.id}"
-              th:text="${medicalTest.name}"></option>
+        <option th:each="medicalTest : ${unassignedMedicalTests}"
+                th:value="${medicalTest.id}"
+                th:text="${medicalTest.name}"></option>
 
-    </select>
+      </select>
 
-<!--    <button type="submit" class="btn btn-outline-primary">Asignează</button><br>-->
-    <!--    <input name="submit" type="submit"  value="submit" >-->
+      <!--    <button type="submit" class="btn btn-outline-primary">Asignează</button><br>-->
+      <!--    <input name="submit" type="submit"  value="submit" >-->
 
-  <br>
-  <h3  th:text="'Adaugă imagistică pentru: ' + ${diagnostic.name}"></h3><i class="fa-solid fa-x-ray fa-lg" style="color:#f1a718"></i>
-<!--  <input type="text" id="myInput2" onkeyup="myFunction2()" placeholder="Cauta Imagistica...">-->
-  <input type="text" id="search2" name="search2" style="margin: 10px;width: 670px;" onkeyup="filter2()" placeholder="Caută imagistică...">
-
-
-  <br>
-    <select id="select2" class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalImagingList">
-
-      <option th:each="medicalImaging : ${unassignedMedicalImaging}"
-              th:value="${medicalImaging.id}"
-              th:text="${medicalImaging.name}"></option>
-    </select>
-
-<!--    <button type="submit" class="btn btn-outline-primary">Asignează</button><br>-->
-<br>
-  <h3 th:text="'Adaugă simptome pentru: ' + ${diagnostic.name}"></h3><i class="fa-solid fa-head-side-cough fa-lg" style="color:#04acac"></i>
-  <input type="text" id="search" name="search" style="margin: 10px;width: 670px;" onkeyup="filter()" placeholder="Cauta simptome...">
-
-  <br>
-  <select id="select" class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="symptoms">
-    <option th:each="symptom : ${unassignedSymptoms}"
-    th:value="${symptom.id}"
-    th:text="${symptom.name}"></option>
-  </select>
-
-<!--    <button type="submit" class="btn btn-outline-primary">Asignează</button><br>-->
-    <button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Atribuie toate investigațiile selectate</button><br>
-
-  </form>
+      <br>
+      <h3  th:text="'Atribuie imagistică pentru: ' + ${diagnostic.name}"></h3><i class="fa-solid fa-x-ray fa-lg" style="color:#f1a718"></i>
+      <!--  <input type="text" id="myInput2" onkeyup="myFunction2()" placeholder="Cauta Imagistica...">-->
+      <input type="text" id="search2" name="search2" style="margin: 10px;width: 670px;" onkeyup="filter2()" placeholder="Caută imagistică...">
 
 
+      <br>
+      <select id="select2" class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalImagingList">
 
-<!--  CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC-->
-</div>
+        <option th:each="medicalImaging : ${unassignedMedicalImaging}"
+                th:value="${medicalImaging.id}"
+                th:text="${medicalImaging.name}"></option>
+      </select>
+
+      <!--    <button type="submit" class="btn btn-outline-primary">Asignează</button><br>-->
+      <br>
+      <h3 th:text="'Atribuie simptome pentru: ' + ${diagnostic.name}"></h3><i class="fa-solid fa-head-side-cough fa-lg" style="color:#04acac"></i>
+      <input type="text" id="search" name="search" style="margin: 10px;width: 670px;" onkeyup="filter()" placeholder="Cauta simptome...">
+
+      <br>
+      <select id="select" class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="symptoms">
+        <option th:each="symptom : ${unassignedSymptoms}"
+                th:value="${symptom.id}"
+                th:text="${symptom.name}"></option>
+      </select>
+
+      <!--    <button type="submit" class="btn btn-outline-primary">Asignează</button><br>-->
+      <button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Atribuie toate investigațiile selectate</button><br>
+
+    </form>
+
+
+
+    <!--  CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC-->
+  </div>
 </center>
 <center>
-<!--<div>-->
-<!--  <br>-->
-<!--  <br>-->
-<!--  <br>-->
-<!--  ASSIGN ALL-->
-<!--  <form name='f' method="POST" th:action="@{|/diagnostics/${diagnostic.id}/assignAll|}">-->
-<!--    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalTests">-->
-<!--      <option th:each="medicalTest : ${unassignedMedicalTests}"-->
-<!--              th:value="${medicalTest.id}"-->
-<!--              th:text="${medicalTest.name}"></option>-->
+  <!--<div>-->
+  <!--  <br>-->
+  <!--  <br>-->
+  <!--  <br>-->
+  <!--  ASSIGN ALL-->
+  <!--  <form name='f' method="POST" th:action="@{|/diagnostics/${diagnostic.id}/assignAll|}">-->
+  <!--    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalTests">-->
+  <!--      <option th:each="medicalTest : ${unassignedMedicalTests}"-->
+  <!--              th:value="${medicalTest.id}"-->
+  <!--              th:text="${medicalTest.name}"></option>-->
 
-<!--    </select>-->
+  <!--    </select>-->
 
-<!--    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalImagingList">-->
+  <!--    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalImagingList">-->
 
-<!--      <option th:each="medicalImaging : ${unassignedMedicalImaging}"-->
-<!--              th:value="${medicalImaging.id}"-->
-<!--              th:text="${medicalImaging.name}"></option>-->
-<!--    </select>-->
+  <!--      <option th:each="medicalImaging : ${unassignedMedicalImaging}"-->
+  <!--              th:value="${medicalImaging.id}"-->
+  <!--              th:text="${medicalImaging.name}"></option>-->
+  <!--    </select>-->
 
-<!--    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="symptoms">-->
-<!--      <option th:each="symptom : ${unassignedSymptoms}"-->
-<!--              th:value="${symptom.id}"-->
-<!--              th:text="${symptom.name}"></option>-->
-<!--    </select>-->
+  <!--    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="symptoms">-->
+  <!--      <option th:each="symptom : ${unassignedSymptoms}"-->
+  <!--              th:value="${symptom.id}"-->
+  <!--              th:text="${symptom.name}"></option>-->
+  <!--    </select>-->
 
-<!--    <button type="submit" class="btn btn-outline-primary">Asignează toate investigatiile</button><br>-->
-<!--  </form>-->
-<!--</div>-->
-<!--</center>-->
-<!--<center>-->
+  <!--    <button type="submit" class="btn btn-outline-primary">Asignează toate investigatiile</button><br>-->
+  <!--  </form>-->
+  <!--</div>-->
+  <!--</center>-->
+  <!--<center>-->
   <center>
     <br>
     <hr class="solid">
@@ -257,41 +258,41 @@ function filter3() {
 
     <div id="demo" class="collapse">
 
-<div>
-  <br>
-  <h3>Investigațiile atribuite acestui diagnostic </h3>
-  <form name='f' method="POST" th:action="@{|/diagnostics/${diagnostic.id}/unassignAll|}">
-    <div id="myDIV">
-    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalTests">
-      <option th:each="medicalTest : ${assignedMedicalTests}"
-              th:value="${medicalTest.id}"
-              th:text="${medicalTest.name}"></option>
+      <div>
+        <br>
+        <h3>Investigațiile atribuite acestui diagnostic </h3>
+        <form name='f' method="POST" th:action="@{|/diagnostics/${diagnostic.id}/unassignAll|}">
+          <div id="myDIV">
+            <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalTests">
+              <option th:each="medicalTest : ${assignedMedicalTests}"
+                      th:value="${medicalTest.id}"
+                      th:text="${medicalTest.name}"></option>
 
-    </select>
+            </select>
 
-    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalImagingList">
-
-
-
-      <option
-              th:each="medicalImaging : ${assignedMedicalImaging}"
-              th:value="${medicalImaging.id}"
-              th:text="${medicalImaging.name}"></option>
-    </select>
-    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="symptoms">
-      <option th:each="symptom : ${assignedSymptoms}"
-              th:value="${symptom.id}"
-              th:text="${symptom.name}"></option>
-    </select>
-</div>
-
-    <button type="submit" class="btn btn-outline-danger" ><i class="fa-solid fa-link-slash fa-lg"  style="color:#c4443c;"></i> Dezatribuie toate investigațiile selectate  </button><br>
-
-<!--    <button th:href="@{/diagnostics/delete/{id}(id=${diagnostic.id})}" class="btn btn-outline-danger" ><i class="fa-solid fa-trash fa-lg"  style="color:#c4443c"></i> Șterge diagnosticul </button><br>-->
+            <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalImagingList">
 
 
-  </form>
-</div>
+
+              <option
+                      th:each="medicalImaging : ${assignedMedicalImaging}"
+                      th:value="${medicalImaging.id}"
+                      th:text="${medicalImaging.name}"></option>
+            </select>
+            <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="symptoms">
+              <option th:each="symptom : ${assignedSymptoms}"
+                      th:value="${symptom.id}"
+                      th:text="${symptom.name}"></option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-outline-danger" ><i class="fa-solid fa-link-slash fa-lg"  style="color:#c4443c;"></i> Dezatribuie toate investigațiile selectate  </button><br>
+
+          <!--    <button th:href="@{/diagnostics/delete/{id}(id=${diagnostic.id})}" class="btn btn-outline-danger" ><i class="fa-solid fa-trash fa-lg"  style="color:#c4443c"></i> Șterge diagnosticul </button><br>-->
+
+
+        </form>
+      </div>
     </div>
   </center>
 </center>

@@ -99,14 +99,14 @@
     <br>
     <br>
     <br>
-<center><h1>Adaugă imagistică</h1>
-<form method="post" action="/imaging/add">
-    <input style="margin: 10px;width: 700px;" type="text" name="medicalImaging_name" class="form-control" placeholder="Nume imagistică" required="required" id="name" aria-describedby="name" autofocus>
-    <button type="submit" class="btn btn-primary">Confirmare</button><br>
+    <center><h1>Adaugă imagistică</h1>
+        <form method="post" action="/imaging/add">
+            <input style="margin: 10px;width: 700px;" type="text" name="medicalImaging_name" class="form-control" placeholder="Nume imagistică" required="" id="name" aria-describedby="name" oninvalid="this.setCustomValidity('Numele trebuie să fie valid')" autofocus>
+            <button type="submit" class="btn btn-primary">Confirmare</button><br>
 
-</form>
-</center>
-<!--  <br>-->
+        </form>
+    </center>
+    <!--  <br>-->
 </center>
 
 <!-- Footer -->

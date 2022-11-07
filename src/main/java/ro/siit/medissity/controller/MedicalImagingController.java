@@ -31,7 +31,7 @@ public class MedicalImagingController {
 
     @PostMapping("/add")
     public RedirectView addMedicalImaging(Model model,
-                                       @RequestParam("medicalImaging_name") String medicalImagingName) {
+                                          @RequestParam("medicalImaging_name") String medicalImagingName) {
         MedicalImaging addedMedicalImaging = new MedicalImaging(UUID.randomUUID(), medicalImagingName);
 
         medicalImagingRepositoryJpa.saveAndFlush(addedMedicalImaging);
@@ -49,8 +49,8 @@ public class MedicalImagingController {
     }
     @PostMapping("/edit")
     public RedirectView addMedicalImaging(Model model,
-                                        @RequestParam("medicalImaging_id") UUID medicalImagingId,
-                                        @RequestParam("medicalImaging_name") String updatedName)
+                                          @RequestParam("medicalImaging_id") UUID medicalImagingId,
+                                          @RequestParam("medicalImaging_name") String updatedName)
     {
 
         Optional<MedicalImaging> medicalImaging = medicalImagingRepositoryJpa.findById(medicalImagingId);

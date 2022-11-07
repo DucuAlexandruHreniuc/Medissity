@@ -6,9 +6,11 @@
     <link rel="shortcut icon" href="https://www.svgrepo.com/show/28498/letter-m.svg">
     <title>Medissity</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="shortcut icon" href="https://www.svgrepo.com/show/28498/letter-m.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css" integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
   /* Modify the background color */
 
@@ -86,7 +88,8 @@
             </ul>
             <form class="d-flex" role="search">
 
-                <input class="form-control me-2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Caută..." aria-label="Search">
+                <input class="form-control me-2" type="text" id="myInput" placeholder="Caută..." aria-label="Search">
+
 
                 <!--                <input class="form-control me-2" type="search" id="myInput" onkeyup="myFunction()" placeholder="Căutare" aria-label="Search">-->
 
@@ -104,31 +107,31 @@
 <br>
 <h1><center>Listă simptome</center></h1>
 <center>
-    <table class="table" style="width:90%" >
+    <table class="table table-hover" style="width:90%" >
         <thead style="background-color:#e0ecfc">
-    <tr>
-        <th width="50">#</th>
-        <th width="900">Nume</th>
-        <th><center>Editeaza</center></th>
-        <th><center>Sterge</center></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="symptom, iter:${symptoms}">
-        <th scope="row" th:text="${iter.index} + 1">1</th>
-        <td th:text="${symptom.name}"></td>
-        <td> <a th:href="@{/symptoms/edit/{id}(id=${symptom.id})}">
-            <center><i class="fa-solid fa-pen"></i></center>
-        </a>
-        </td>
-        <td> <a onclick="return confirm('Are you sure to delete?')" th:href="@{/symptoms/delete/{id}(id=${symptom.id})}">
-            <center><i class="fa-solid fa-trash" style="color:#c4443c"></i></center>
-        </a>
-        </td>
+        <tr>
+            <th width="50">#</th>
+            <th width="900">Nume</th>
+            <th><center>Editează</center></th>
+            <th><center>Șterge</center></th>
+        </tr>
+        </thead>
+        <tbody id="myTable">
+        <tr th:each="symptom, iter:${symptoms}">
+            <th scope="row" th:text="${iter.index} + 1">1</th>
+            <td th:text="${symptom.name}"></td>
+            <td> <a th:href="@{/symptoms/edit/{id}(id=${symptom.id})}">
+                <center><i class="fa-solid fa-pen"></i></center>
+            </a>
+            </td>
+            <td> <a onclick="return confirm('Are you sure to delete?')" th:href="@{/symptoms/delete/{id}(id=${symptom.id})}">
+                <center><i class="fa-solid fa-trash" style="color:#c4443c"></i></center>
+            </a>
+            </td>
 
-    </tr>
-    </tbody>
-</table>
+        </tr>
+        </tbody>
+    </table>
 </center>
 <center><a th:href="@{/symptoms/add}" class="btn btn-primary active" role="button" aria-pressed="true">Adaugă un simptom</a></center>
 
@@ -152,7 +155,17 @@
     </div>
 </footer>
 <!-- Footer -->
+<script>
 
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>

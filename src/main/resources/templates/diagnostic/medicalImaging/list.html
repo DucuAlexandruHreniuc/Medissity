@@ -12,8 +12,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <style>
-
-
   /* Modify the background color */
 
         .navbar-custom {
@@ -94,7 +92,7 @@
 
                 <!--                <input class="form-control me-2" type="search" id="myInput" onkeyup="myFunction()" placeholder="Căutare" aria-label="Search">-->
 
-<!--                <button class="btn btn-outline-success" type="submit">Caută </button>-->
+                <!--                <button class="btn btn-outline-success" type="submit">Caută </button>-->
             </form>
         </div>
     </div>
@@ -111,32 +109,32 @@
 <h1><center>Listă imagistică</center></h1>
 <center>
 
-<table class="table table-hover" style="width:90%" >
-    <thead style="background-color:#e0ecfc">
-    <tr>
-        <th width="50">#</th>
-        <th width="900">Nume</th>
-        <th><center>Editeaza</center></th>
-        <th><center>Sterge</center></th>
-    </tr>
-    </thead>
-    <tbody id="myTable">
-    <tr th:each="medicalImaging, iter:${imaging}">
-        <th scope="row" th:text="${iter.index} + 1">1</th>
-        <td th:text="${medicalImaging.name}"></td>
-        <td> <a th:href="@{/imaging/edit/{id}(id=${medicalImaging.id})}">
-            <center><i class="fa-solid fa-pen"></i></center>
-        </a>
-        </td>
-        <td> <a onclick="return confirm('Are you sure to delete?')" th:href="@{/imaging/delete/{id}(id=${medicalImaging.id})}">
-            <center><i class="fa-solid fa-trash" style="color:#c4443c" ></i></center>
-        </a>
-        </td>
+    <table class="table table-hover" style="width:90%" >
+        <thead style="background-color:#e0ecfc">
+        <tr>
+            <th width="50">#</th>
+            <th width="900">Nume</th>
+            <th><center>Editează</center></th>
+            <th><center>Șterge</center></th>
+        </tr>
+        </thead>
+        <tbody id="myTable">
+        <tr th:each="medicalImaging, iter:${imaging}">
+            <th scope="row" th:text="${iter.index} + 1">1</th>
+            <td th:text="${medicalImaging.name}"></td>
+            <td> <a th:href="@{/imaging/edit/{id}(id=${medicalImaging.id})}">
+                <center><i class="fa-solid fa-pen"></i></center>
+            </a>
+            </td>
+            <td> <a onclick="return confirm('Are you sure to delete?')" th:href="@{/imaging/delete/{id}(id=${medicalImaging.id})}">
+                <center><i class="fa-solid fa-trash" style="color:#c4443c" ></i></center>
+            </a>
+            </td>
 
-    </tr>
-    </tbody>
-</table>
-<center><a th:href="@{/imaging/add}" class="btn btn-primary active" role="button" aria-pressed="true">Adaugă imagistică</a></center>
+        </tr>
+        </tbody>
+    </table>
+    <center><a th:href="@{/imaging/add}" class="btn btn-primary active" role="button" aria-pressed="true">Adaugă imagistică</a></center>
 </center>
 
 <!-- Footer -->

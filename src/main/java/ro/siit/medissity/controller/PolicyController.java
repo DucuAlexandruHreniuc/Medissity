@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import ro.siit.medissity.model.Policy;
 import ro.siit.medissity.repository.PolicyRepositoryJpa;
-
 import javax.annotation.PostConstruct;
 import java.util.UUID;
 
@@ -19,10 +18,9 @@ public class PolicyController {
 
     @PostConstruct
     private void postConstructPolicy(){
-        Policy p1 = new Policy(UUID.randomUUID(),"Asirom","https://drive.google.com/drive/u/0/folders/14Lwomb9fojtHfH9sJo2hpoi1Y_URIUwg");
+        Policy p1 = new Policy(UUID.randomUUID(),"Exemplu","http://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf");
         policyRepositoryJpa.saveAndFlush(p1);
     }
-
 
     @GetMapping(value = "/")
     public String getPolicies(Model model){
@@ -35,7 +33,7 @@ public class PolicyController {
     }
 
     @PostMapping("/add")
-    public RedirectView postConstructPolicy(Model model,
+    public RedirectView addPolicy(Model model,
                                             @RequestParam("policy_name") String policyName, @RequestParam("policy_link") String link) {
         Policy addedPolicy = new Policy(UUID.randomUUID(), policyName, link);
         policyRepositoryJpa.saveAndFlush(addedPolicy);

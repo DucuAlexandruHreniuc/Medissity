@@ -31,7 +31,7 @@ public class SymptomController {
     }
     @PostMapping("/add")
     public RedirectView addSymptom(Model model,
-                                       @RequestParam("symptom_name") String symptomName) {
+                                   @RequestParam("symptom_name") String symptomName) {
         Symptom addedSymptom = new Symptom(UUID.randomUUID(), symptomName);
         symptomRepositoryJpa.saveAndFlush(addedSymptom);
         return new RedirectView("/symptoms/");
@@ -50,8 +50,8 @@ public class SymptomController {
 
     @PostMapping("/edit")
     public RedirectView addSymtoms(Model model,
-                                        @RequestParam("symptom_id") UUID symptomId,
-                                        @RequestParam("symptom_name") String updatedName)
+                                   @RequestParam("symptom_id") UUID symptomId,
+                                   @RequestParam("symptom_name") String updatedName)
     {
 
         Optional<Symptom> symptom = symptomRepositoryJpa.findById(symptomId);

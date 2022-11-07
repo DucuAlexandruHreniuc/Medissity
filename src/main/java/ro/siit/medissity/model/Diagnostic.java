@@ -74,7 +74,7 @@ public class Diagnostic {
         this.id = id;
         this.name = name;
     }
-public Diagnostic(UUID id, String[] name) {
+    public Diagnostic(UUID id, String[] name) {
         this.id = id;
     }
 
