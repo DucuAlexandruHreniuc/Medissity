@@ -1,4 +1,4 @@
-package ro.siit.demo.controller;
+package ro.siit.medissity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -6,15 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-import ro.siit.demo.model.MedicalTest;
-import ro.siit.demo.repository.MedicalTestRepositoryJpa;
+import ro.siit.medissity.model.MedicalTest;
+import ro.siit.medissity.repository.MedicalTestRepositoryJpa;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("analize")
+@RequestMapping("medical-tests")
 public class MedicalTestController {
     @Autowired
     private MedicalTestRepositoryJpa medicalTestRepositoryJpa;
@@ -35,7 +35,7 @@ public class MedicalTestController {
         MedicalTest addedMedicalTest = new MedicalTest(UUID.randomUUID(), medicalTestName);
 
         medicalTestRepositoryJpa.saveAndFlush(addedMedicalTest);
-        return new RedirectView("/analize/");
+        return new RedirectView("/medical-tests/");
 
 
     }
@@ -57,12 +57,12 @@ public class MedicalTestController {
         Optional<MedicalTest> medicalTest = medicalTestRepositoryJpa.findById(medicalTestId);
         medicalTest.get().setName(updatedName);
         medicalTestRepositoryJpa.save(medicalTest.get());
-        return new RedirectView("/analize/");
+        return new RedirectView("/medical-tests/");
     }
     @GetMapping("/delete/{id}")
     public RedirectView deleteMedicalTest(Model model, @PathVariable("id") UUID medicalTestId) {
         medicalTestRepositoryJpa.deleteById(medicalTestId);
-        return new RedirectView("/analize/");
+        return new RedirectView("/medical-tests/");
     }
 
 }

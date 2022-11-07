@@ -80,7 +80,7 @@ function filter3() {
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
 
-          <a class="nav-link active" aria-current="page" th:href="@{/diagnostic/}"> <i class="fa-solid fa-house"></i> Acasă</a>
+          <a class="nav-link active" aria-current="page" th:href="@{/diagnostics/}"> <i class="fa-solid fa-house"></i> Acasă</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -89,13 +89,13 @@ function filter3() {
             Adăugare
           </a>
           <ul class="dropdown-menu">
-            <li><a th:href="@{/diagnostic/add}" class="dropdown-item" aria-pressed="true"> <i class="fa-solid fa-plus"></i> Adaugă un diagnostic</a>
+            <li><a th:href="@{/diagnostics/add}" class="dropdown-item" aria-pressed="true"> <i class="fa-solid fa-plus"></i> Adaugă un diagnostic</a>
             </li>
 
-            <li><a th:href="@{/analize/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă analize</a>
+            <li><a th:href="@{/medical-tests/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă analize</a>
             </li>
 
-            <li><a th:href="@{/imagistica/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă imagistică</a>
+            <li><a th:href="@{/imaging/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă imagistică</a>
             </li>
 
             <li><a th:href="@{/symptoms/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă un simptom</a>
@@ -111,9 +111,9 @@ function filter3() {
             Liste
           </a>
           <ul class="dropdown-menu">
-            <li><a th:href="@{/diagnostic/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă diagnostice</a></li>
-            <li><a th:href="@{/analize/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă analize</a></li>
-            <li><a th:href="@{/imagistica/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă imagistică</a>
+            <li><a th:href="@{/diagnostics/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă diagnostice</a></li>
+            <li><a th:href="@{/medical-tests/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă analize</a></li>
+            <li><a th:href="@{/imaging/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă imagistică</a>
             <li><a th:href="@{/symptoms/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă simptome</a>
 
             </li>
@@ -149,7 +149,7 @@ function filter3() {
   <br>
   <br>
   <h2 th:text="'Schimbă numele diagnosticului ' + ${diagnostic.name}"></h2>
-  <form method="post" th:action="@{/diagnostic/edit}">
+  <form method="post" th:action="@{/diagnostics/edit}">
     <input type="hidden" th:value="${diagnostic.id}" name="diagnostic_id">
     <div class="mb-3">
 <!--      <label for="name" class="form-label">Nume</label>-->
@@ -163,7 +163,7 @@ function filter3() {
 
 
 <br>
-  <form name='f' method="POST" th:action="@{|/diagnostic/${diagnostic.id}/assignAll|}">
+  <form name='f' method="POST" th:action="@{|/diagnostics/${diagnostic.id}/assignAll|}">
   <h3 th:text="'Adaugă analize pentru:  ' + ${diagnostic.name}"></h3><i class="fa-solid fa-syringe fa-lg" style="color:#60ac44"></i>
 <!--  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Cauta analize...">-->
   <input type="text" id="search3" name="search3" style="margin: 10px;width: 670px;" onkeyup="filter3()" placeholder="Caută analize...">
@@ -222,7 +222,7 @@ function filter3() {
 <!--  <br>-->
 <!--  <br>-->
 <!--  ASSIGN ALL-->
-<!--  <form name='f' method="POST" th:action="@{|/diagnostic/${diagnostic.id}/assignAll|}">-->
+<!--  <form name='f' method="POST" th:action="@{|/diagnostics/${diagnostic.id}/assignAll|}">-->
 <!--    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalTests">-->
 <!--      <option th:each="medicalTest : ${unassignedMedicalTests}"-->
 <!--              th:value="${medicalTest.id}"-->
@@ -260,7 +260,7 @@ function filter3() {
 <div>
   <br>
   <h3>Investigațiile atribuite acestui diagnostic </h3>
-  <form name='f' method="POST" th:action="@{|/diagnostic/${diagnostic.id}/unassignAll|}">
+  <form name='f' method="POST" th:action="@{|/diagnostics/${diagnostic.id}/unassignAll|}">
     <div id="myDIV">
     <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalTests">
       <option th:each="medicalTest : ${assignedMedicalTests}"
@@ -287,7 +287,7 @@ function filter3() {
 
     <button type="submit" class="btn btn-outline-danger" ><i class="fa-solid fa-link-slash fa-lg"  style="color:#c4443c;"></i> Dezatribuie toate investigațiile selectate  </button><br>
 
-<!--    <button th:href="@{/diagnostic/delete/{id}(id=${diagnostic.id})}" class="btn btn-outline-danger" ><i class="fa-solid fa-trash fa-lg"  style="color:#c4443c"></i> Șterge diagnosticul </button><br>-->
+<!--    <button th:href="@{/diagnostics/delete/{id}(id=${diagnostic.id})}" class="btn btn-outline-danger" ><i class="fa-solid fa-trash fa-lg"  style="color:#c4443c"></i> Șterge diagnosticul </button><br>-->
 
 
   </form>

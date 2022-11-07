@@ -1,17 +1,14 @@
-package ro.siit.demo.controller;
+package ro.siit.medissity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-import ro.siit.demo.model.MedicalImaging;
-import ro.siit.demo.model.Policy;
-import ro.siit.demo.repository.PolicyRepositoryJpa;
+import ro.siit.medissity.model.Policy;
+import ro.siit.medissity.repository.PolicyRepositoryJpa;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -21,8 +18,9 @@ public class PolicyController {
     private PolicyRepositoryJpa policyRepositoryJpa;
 
     @PostConstruct
-    private void addPolicy(){
-        Policy p1 = new Policy(UUID.randomUUID(),"Asirong","https://drive.google.com/drive/u/0/folders/14Lwomb9fojtHfH9sJo2hpoi1Y_URIUwg");
+    private void postConstructPolicy(){
+        Policy p1 = new Policy(UUID.randomUUID(),"Asirom","https://drive.google.com/drive/u/0/folders/14Lwomb9fojtHfH9sJo2hpoi1Y_URIUwg");
+        policyRepositoryJpa.saveAndFlush(p1);
     }
 
 
@@ -32,19 +30,17 @@ public class PolicyController {
         return "diagnostic/policy/list";
     }
     @GetMapping("/add")
-    public String addPolicy(Model model) {
+    public String postConstructPolicy(Model model) {
         return "diagnostic/policy/addForm";
     }
 
     @PostMapping("/add")
-    public RedirectView addPolicy(Model model,
-                                          @RequestParam("policy_name") String policyName, @RequestParam("policy_link") String link) {
+    public RedirectView postConstructPolicy(Model model,
+                                            @RequestParam("policy_name") String policyName, @RequestParam("policy_link") String link) {
         Policy addedPolicy = new Policy(UUID.randomUUID(), policyName, link);
         policyRepositoryJpa.saveAndFlush(addedPolicy);
         return new RedirectView("/policies/");
-
     }
-
 
 //    @GetMapping("/edit/{id}")
 //    public String editMedicalImaging(Model model, @PathVariable("id") UUID medicalImagingId) {

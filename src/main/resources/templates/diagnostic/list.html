@@ -92,7 +92,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
 
-                    <a class="nav-link active" aria-current="page" th:href="@{/diagnostic/}"> <i class="fa-solid fa-house"></i> Acasă</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/diagnostics/}"> <i class="fa-solid fa-house"></i> Acasă</a>
 
                 </li>
 
@@ -102,13 +102,13 @@
                         Adăugare
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a th:href="@{/diagnostic/add}" class="dropdown-item" aria-pressed="true"> <i class="fa-solid fa-plus"></i> Adaugă un diagnostic</a>
+                        <li><a th:href="@{/diagnostics/add}" class="dropdown-item" aria-pressed="true"> <i class="fa-solid fa-plus"></i> Adaugă un diagnostic</a>
                         </li>
 
-                        <li><a th:href="@{/analize/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă analize</a>
+                        <li><a th:href="@{/medical-tests/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă analize</a>
                         </li>
 
-                        <li><a th:href="@{/imagistica/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă imagistică</a>
+                        <li><a th:href="@{/imaging/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă imagistică</a>
                         </li>
 
                         <li><a th:href="@{/symptoms/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă un simptom</a>
@@ -124,8 +124,8 @@
                         Liste
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a th:href="@{/analize/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă analize</a></li>
-                        <li><a th:href="@{/imagistica/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă imagistică</a>
+                        <li><a th:href="@{/medical-tests/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă analize</a></li>
+                        <li><a th:href="@{/imaging/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă imagistică</a>
                         <li><a th:href="@{/symptoms/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă simptome</a>
                         </li>
                         <!--                        <li><hr class="dropdown-divider"></li>-->
@@ -172,36 +172,36 @@
         <div th:id="collapse+${diagnostic.id}" class="accordion-collapse collapse" th:aria-labelledby="heading+${diagnostic.id}" data-bs-parent="#accordionExample">
             </p>
             <div>
-                <a onclick="return confirm('Are you sure to delete?')" th:href="@{/diagnostic/delete/{id}(id=${diagnostic.id})}" title="Șterge" >
+                <a onclick="return confirm('Are you sure to delete?')" th:href="@{/diagnostics/delete/{id}(id=${diagnostic.id})}" title="Șterge" >
                     <i class="fa-solid fa-trash fa-lg" style="float: right; padding: 5px; color:#c4443c" ></i></a>
 
-                <a th:href="@{/diagnostic/edit/{id}(id=${diagnostic.id})}" title="Editează">
+                <a th:href="@{/diagnostics/edit/{id}(id=${diagnostic.id})}" title="Editează">
                     <i class="fa-solid fa-pen-to-square fa-lg" style="padding: 5px; float:right; " ></i></a>
             </div>
             <div style="margin-left:60px" class="row">
                 <div class="column left">
                     <center><b><i class="fa-solid fa-syringe" style="color:#60ac44"></i>Analize</b></center>
-                    <!--                    <a th:href="@{/diagnostic/add}" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Adaugă analize acestui diagnostic</a>-->
+                    <!--                    <a th:href="@{/diagnostics/add}" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Adaugă analize acestui diagnostic</a>-->
                     <div class="accordion-body"  th:text="${diagnostic.medicalTestNames}" >
                     </div>
                 </div>
                 <div class="column middle">
                     <center><b><i class="fa-solid fa-x-ray" style="color:#f1a718"></i>Imagistica</b></center>
-                    <!--                    <a th:href="@{/diagnostic/add}" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Adaugă imagistică acestui diagnostic</a>-->
+                    <!--                    <a th:href="@{/diagnostics/add}" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Adaugă imagistică acestui diagnostic</a>-->
                     <div class="accordion-body" th:text="${diagnostic.medicalImagingNames}">
                     </div>
                 </div>
                 <div class="column right">
                     <center><b><i class="fa-solid fa-head-side-cough" style="color:#04acac"></i>Simptome</b></center>
-                    <!--                    <a th:href="@{/diagnostic/add}" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Adaugă simptome acestui diagnostic</a>-->
+                    <!--                    <a th:href="@{/diagnostics/add}" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Adaugă simptome acestui diagnostic</a>-->
                     <div class="accordion-body" th:text="${diagnostic.symptomNames}">
                     </div>
                 </div>
                 <!--                    <div style = "position:relative; left:1480px; top:2px;">-->
-                <!--                    <a th:href="@{/diagnostic/edit/{id}(id=${diagnostic.id})}">-->
+                <!--                    <a th:href="@{/diagnostics/edit/{id}(id=${diagnostic.id})}">-->
                 <!--                        <i class="fa-solid fa-pen fa-lg"></i></a>-->
 
-                <!--                    <a th:href="@{/diagnostic/delete/{id}(id=${diagnostic.id})}">-->
+                <!--                    <a th:href="@{/diagnostics/delete/{id}(id=${diagnostic.id})}">-->
                 <!--                        <i class="fa-solid fa-trash fa-lg"></i></a>-->
                 <!--                    </div>-->
             </div>
@@ -225,7 +225,6 @@
             <div class="footer-copyright text-center py-3">© 2022
                 <a href="https://www.telios.ro/">Powered by<br><img src="https://www.telios.ro/hubfs/Telios-logos/Telios-Care-logo-color.svg" class="hs-image-widget " style="width:150px;border-width:0px;border:0px;" width="200" alt="Telios-Care-logo-color" title="Telios-Care-logo-color"></a>
             </div>
-
         </div>
     </div>
 </footer>

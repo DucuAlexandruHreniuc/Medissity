@@ -1,4 +1,4 @@
-package ro.siit.demo.controller;
+package ro.siit.medissity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -6,15 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-import ro.siit.demo.model.MedicalImaging;
-import ro.siit.demo.repository.MedicalImagingRepositoryJpa;
+import ro.siit.medissity.model.MedicalImaging;
+import ro.siit.medissity.repository.MedicalImagingRepositoryJpa;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("imagistica")
+@RequestMapping("imaging")
 public class MedicalImagingController {
     @Autowired
     private MedicalImagingRepositoryJpa medicalImagingRepositoryJpa;
@@ -35,7 +35,7 @@ public class MedicalImagingController {
         MedicalImaging addedMedicalImaging = new MedicalImaging(UUID.randomUUID(), medicalImagingName);
 
         medicalImagingRepositoryJpa.saveAndFlush(addedMedicalImaging);
-        return new RedirectView("/imagistica/add");
+        return new RedirectView("/imaging/add");
 
     }
     @GetMapping("/edit/{id}")
@@ -56,11 +56,11 @@ public class MedicalImagingController {
         Optional<MedicalImaging> medicalImaging = medicalImagingRepositoryJpa.findById(medicalImagingId);
         medicalImaging.get().setName(updatedName);
         medicalImagingRepositoryJpa.save(medicalImaging.get());
-        return new RedirectView("/imagistica/");
+        return new RedirectView("/imaging/");
     }
     @GetMapping("/delete/{id}")
     public RedirectView deleteMedicalImaging(Model model, @PathVariable("id") UUID medicalImagingId) {
         medicalImagingRepositoryJpa.deleteById(medicalImagingId);
-        return new RedirectView("/imagistica/");
+        return new RedirectView("/imaging/");
     }
 }

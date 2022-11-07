@@ -1,7 +1,7 @@
-package ro.siit.demo.repository;
+package ro.siit.medissity.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ro.siit.demo.model.MedicalImaging;
+import ro.siit.medissity.model.MedicalImaging;
 
 import java.util.UUID;
 

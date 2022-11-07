@@ -1,4 +1,4 @@
-package ro.siit.demo.model;
+package ro.siit.medissity.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

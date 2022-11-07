@@ -1,23 +1,22 @@
-package ro.siit.demo.controller;
+package ro.siit.medissity.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-import ro.siit.demo.model.*;
-import ro.siit.demo.repository.*;
-
+import ro.siit.medissity.model.*;
+import ro.siit.medissity.repository.*;
 import javax.annotation.PostConstruct;
 import java.util.*;
 import java.util.stream.Collectors;
 
 
 @Controller
-@RequestMapping("diagnostic")
+@RequestMapping("diagnostics")
 public class DiagnosticController {
 
-        @Autowired
+    @Autowired
     private DiagnosticRepositoryJpa diagnosticRepositoryJpa;
 
     /**
@@ -38,39 +37,39 @@ public class DiagnosticController {
                 "Tulburări paroxistice",
                 "Polipi endometriali",
                 "Tiroidită subacută",
-                        "Tiroidită acută",
-                        "Distiroidie",
-                        "Gușă toxică",
-                        "Gusa netoxică",
-                        "Boala Plummer",
-                        "Steatoză hepatică",
-                        "Keratoză pilară",
-                        "Prurigo cronic",
-                        "Otita externă stângă/dreaptă",
-                        "Laringita acută",
-                        "Rinita acută sau cronică alergică",
-                        "Hemipareza facială",
-                        "Prostatita acută sau cronică",
-                        "Mixedemul primar",
-                        "Psoriazis",
-                        "Dislipidemia mixtă",
-                        "Hipoacuzia stângă/dreaptă",
-                        "Diareea si gastro-enterita posibil infectioasa",
-                        "Dermita",
-                        "Sindromul ovarelor polichistice",
-                        "Bacteria E.Coli în funcție de localizare",
-                        "Sindromul de citoliză hepatică",
-                        "Discopatia lombară",
-                        "Vulvovaginita",
-                        "Exocervicita",
-                        "Nevralgia intercostală ",
-                        "Tulburările alimentare",
-                        "Metroragia",
-                        "Hipotrofia ponderală" ,
-                        "Prolapsul rectal" ,
-                        "Hipotiroidismul" ,
-                        "Hipertiroidismul",
-                        "Tiroidita autoimună cronică"
+                "Tiroidită acută",
+                "Distiroidie",
+                "Gușă toxică",
+                "Gusa netoxică",
+                "Boala Plummer",
+                "Steatoză hepatică",
+                "Keratoză pilară",
+                "Prurigo cronic",
+                "Otita externă stângă/dreaptă",
+                "Laringita acută",
+                "Rinita acută sau cronică alergică",
+                "Hemipareza facială",
+                "Prostatita acută sau cronică",
+                "Mixedemul primar",
+                "Psoriazis",
+                "Dislipidemia mixtă",
+                "Hipoacuzia stângă/dreaptă",
+                "Diareea si gastro-enterita posibil infectioasa",
+                "Dermita",
+                "Sindromul ovarelor polichistice",
+                "Bacteria E.Coli în funcție de localizare",
+                "Sindromul de citoliză hepatică",
+                "Discopatia lombară",
+                "Vulvovaginita",
+                "Exocervicita",
+                "Nevralgia intercostală ",
+                "Tulburările alimentare",
+                "Metroragia",
+                "Hipotrofia ponderală" ,
+                "Prolapsul rectal" ,
+                "Hipotiroidismul" ,
+                "Hipertiroidismul",
+                "Tiroidita autoimună cronică"
         };
         for (String diagnosticName : diagnosticNames) {
             Diagnostic d0 = new Diagnostic(UUID.randomUUID(), diagnosticName);
@@ -122,8 +121,8 @@ public class DiagnosticController {
     }
 
 
-   @Autowired
-   private MedicalImagingRepositoryJpa medicalImagingRepositoryJpa;
+    @Autowired
+    private MedicalImagingRepositoryJpa medicalImagingRepositoryJpa;
 
     @PostConstruct
     private void postConstructMedicalImaging() {
@@ -157,8 +156,8 @@ public class DiagnosticController {
         }
     }
 
-  @Autowired
-   private SymptomRepositoryJpa symptomRepositoryJpa;
+    @Autowired
+    private SymptomRepositoryJpa symptomRepositoryJpa;
 
     @PostConstruct
     private void postConstructSymptom() {
@@ -216,12 +215,12 @@ public class DiagnosticController {
     @PostMapping("/add")
     public RedirectView addDiagnostics(Model model,
 
-                                @RequestParam("diagnostic_name") String diagnosticName) {
+                                       @RequestParam("diagnostic_name") String diagnosticName) {
         Diagnostic addedDiagnostic = new Diagnostic(UUID.randomUUID(), diagnosticName);
 
 
         diagnosticRepositoryJpa.saveAndFlush(addedDiagnostic);
-        return new RedirectView("/diagnostic/");
+        return new RedirectView("/diagnostics/");
     }
     @GetMapping("/edit/{id}")
     public String editDiangosticFormTests(Model model, @PathVariable("id") UUID diangosticId) {
@@ -266,19 +265,19 @@ public class DiagnosticController {
 
     @PostMapping("/edit")
     public RedirectView addDiangostics(Model model,
-                                @RequestParam("diagnostic_id") UUID diagnosticId,
-                                @RequestParam("diagnostic_name") String updatedName)
-                                {
+                                       @RequestParam("diagnostic_id") UUID diagnosticId,
+                                       @RequestParam("diagnostic_name") String updatedName)
+    {
 
         Optional<Diagnostic> diangostic = diagnosticRepositoryJpa.findById(diagnosticId);
         diangostic.get().setName(updatedName);
         diagnosticRepositoryJpa.save(diangostic.get());
-        return new RedirectView("/diagnostic/");
+        return new RedirectView("/diagnostics/");
     }
     @GetMapping("/delete/{id}")
     public RedirectView deleteDiagnostic(Model model, @PathVariable("id") UUID diagnosticId) {
         diagnosticRepositoryJpa.deleteById(diagnosticId);
-        return new RedirectView("/diagnostic/");
+        return new RedirectView("/diagnostics/");
     }
     @GetMapping("/{id}/assignMedicalTest/{medicalTestId}")
     public RedirectView assignMedicalTest(Model model, @PathVariable("id") UUID diagnosticId, @PathVariable("medicalTestId") UUID medicalTestId) {
@@ -286,7 +285,7 @@ public class DiagnosticController {
         MedicalTest medicalTestToAdd = medicalTestRepositoryJpa.findById(medicalTestId).get();
         diagnostic.getMedicalTestList().add(medicalTestToAdd);
         diagnosticRepositoryJpa.save(diagnostic);
-        return new RedirectView("/diagnostic/");
+        return new RedirectView("/diagnostics/");
     }
     @GetMapping("/{id}/assignMedicalImaging/{medicalImagingId}")
     public RedirectView assignMedicalImaging(Model model, @PathVariable("id") UUID diagnosticId, @PathVariable("medicalImagingId") UUID medicalImagingId) {
@@ -294,7 +293,7 @@ public class DiagnosticController {
         MedicalImaging medicalImagingToAdd = medicalImagingRepositoryJpa.findById(medicalImagingId).get();
         diagnostic.getMedicalImagingList().add(medicalImagingToAdd);
         diagnosticRepositoryJpa.save(diagnostic);
-        return new RedirectView("/diagnostic/");
+        return new RedirectView("/diagnostics/");
     }
 
     @GetMapping("/{id}/assignSymptom/{symptomId}")
@@ -303,7 +302,7 @@ public class DiagnosticController {
         Symptom symptomToAdd = symptomRepositoryJpa.findById(symptomId).get();
         diagnostic.getSymptomList().add(symptomToAdd);
         diagnosticRepositoryJpa.save(diagnostic);
-        return new RedirectView("/diagnostic/edit/{id}");
+        return new RedirectView("/diagnostics/edit/{id}");
     }
     @PostMapping("/{id}/assignSymptoms")
     public RedirectView processFormSymptoms(@PathVariable("id") UUID diagnosticId, @RequestParam UUID[] symptoms) {
@@ -314,7 +313,7 @@ public class DiagnosticController {
             diagnostic.getSymptomList().add(symptomToAdd);
         }
         diagnosticRepositoryJpa.save(diagnostic);
-        return new RedirectView("/diagnostic/");
+        return new RedirectView("/diagnostics/");
     }
     @PostMapping("/{id}/assignMedicalImaging")
     public RedirectView processFormImaging(@PathVariable("id") UUID diagnosticId, @RequestParam UUID[] medicalImagingList) {
@@ -324,7 +323,7 @@ public class DiagnosticController {
             diagnostic.getMedicalImagingList().add(medicalImagingToAdd);
         }
         diagnosticRepositoryJpa.save(diagnostic);
-        return new RedirectView("/diagnostic/");
+        return new RedirectView("/diagnostics/");
     }
     @PostMapping("/{id}/assignMedicalTests")
     public RedirectView processFormTests(@PathVariable("id") UUID diagnosticId, @RequestParam UUID[] medicalTests) {
@@ -335,24 +334,23 @@ public class DiagnosticController {
             diagnostic.getMedicalTestList().add(medicalTestToAdd);
         }
         diagnosticRepositoryJpa.save(diagnostic);
-        return new RedirectView("/diagnostic/");
+        return new RedirectView("/diagnostics/");
     }
 
     @PostMapping("/{id}/assignAll")
     public RedirectView processFormAll(@PathVariable("id") UUID diagnosticId, @RequestParam (required = false) UUID[] medicalTests, @RequestParam(required = false) UUID[] medicalImagingList, @RequestParam(required = false) UUID[]symptoms) {
-//        System.out.println(Arrays.toString(medicalTests));
         Diagnostic diagnostic = diagnosticRepositoryJpa.findById(diagnosticId).get();
         if(medicalTests != null){
-        for (UUID medicalTest : medicalTests) {
-            MedicalTest medicalTestToAdd = medicalTestRepositoryJpa.findById(medicalTest).get();
-            diagnostic.getMedicalTestList().add(medicalTestToAdd);
-        }
+            for (UUID medicalTest : medicalTests) {
+                MedicalTest medicalTestToAdd = medicalTestRepositoryJpa.findById(medicalTest).get();
+                diagnostic.getMedicalTestList().add(medicalTestToAdd);
+            }
         }
         if(medicalImagingList != null){
-        for (UUID medicalImaging : medicalImagingList) {
-            MedicalImaging medicalImagingToAdd = medicalImagingRepositoryJpa.findById(medicalImaging).get();
-            diagnostic.getMedicalImagingList().add(medicalImagingToAdd);
-        }
+            for (UUID medicalImaging : medicalImagingList) {
+                MedicalImaging medicalImagingToAdd = medicalImagingRepositoryJpa.findById(medicalImaging).get();
+                diagnostic.getMedicalImagingList().add(medicalImagingToAdd);
+            }
         }
 
         if(symptoms != null) {
@@ -360,24 +358,21 @@ public class DiagnosticController {
                 Symptom symptomToAdd = symptomRepositoryJpa.findById(symptom).get();
                 diagnostic.getSymptomList().add(symptomToAdd);
             }
-            }else {
-
-
         }
 
         diagnosticRepositoryJpa.save(diagnostic);
-        return new RedirectView("/diagnostic/");
+        return new RedirectView("/diagnostics/");
     }
 
-//    Unassign
+    //    Unassign
     @PostMapping("/{id}/unassignAll")
     public RedirectView processFormUnassignAll(@PathVariable("id") UUID diagnosticId, @RequestParam (required = false) UUID[] medicalTests, @RequestParam(required = false) UUID[] medicalImagingList, @RequestParam(required = false) UUID[]symptoms) {
 //        System.out.println(Arrays.toString(medicalTests));
         Diagnostic diagnostic = diagnosticRepositoryJpa.findById(diagnosticId).get();
         if(medicalTests != null){
-        for (UUID medicalTest : medicalTests) {
-            MedicalTest medicalTestToAdd = medicalTestRepositoryJpa.findById(medicalTest).get();
-            diagnostic.getMedicalTestList().remove(medicalTestToAdd);
+            for (UUID medicalTest : medicalTests) {
+                MedicalTest medicalTestToAdd = medicalTestRepositoryJpa.findById(medicalTest).get();
+                diagnostic.getMedicalTestList().remove(medicalTestToAdd);
             }
         }
         if(medicalImagingList != null) {
@@ -394,9 +389,6 @@ public class DiagnosticController {
             }
         }
         diagnosticRepositoryJpa.save(diagnostic);
-        return new RedirectView("/diagnostic/");
+        return new RedirectView("/diagnostics/");
     }
 }
-
-
-

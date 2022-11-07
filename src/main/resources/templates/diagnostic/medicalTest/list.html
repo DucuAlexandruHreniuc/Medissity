@@ -35,7 +35,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
 
-          <a class="nav-link active" aria-current="page" th:href="@{/diagnostic/}"> <i class="fa-solid fa-house"></i> Acasă</a>
+          <a class="nav-link active" aria-current="page" th:href="@{/diagnostics/}"> <i class="fa-solid fa-house"></i> Acasă</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -44,13 +44,13 @@
             Adăugare
           </a>
           <ul class="dropdown-menu">
-            <li><a th:href="@{/diagnostic/add}" class="dropdown-item" aria-pressed="true"> <i class="fa-solid fa-plus"></i> Adaugă un diagnostic</a>
+            <li><a th:href="@{/diagnostics/add}" class="dropdown-item" aria-pressed="true"> <i class="fa-solid fa-plus"></i> Adaugă un diagnostic</a>
             </li>
 
-            <li><a th:href="@{/analize/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă analize</a>
+            <li><a th:href="@{/medical-tests/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă analize</a>
             </li>
 
-            <li><a th:href="@{/imagistica/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă imagistică</a>
+            <li><a th:href="@{/imaging/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă imagistică</a>
             </li>
 
             <li><a th:href="@{/symptoms/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă un simptom</a>
@@ -66,8 +66,8 @@
             Liste
           </a>
           <ul class="dropdown-menu">
-            <li><a th:href="@{/diagnostic/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă diagnostice</a></li>
-            <li><a th:href="@{/imagistica/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă imagistică</a>
+            <li><a th:href="@{/diagnostics/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă diagnostice</a></li>
+            <li><a th:href="@{/imaging/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă imagistică</a>
             <li><a th:href="@{/symptoms/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă simptome</a>
 
             </li>
@@ -119,11 +119,11 @@
   <tr  th:each="medicalTest, iter:${medicalTests}" >
     <th scope="row" th:text="${iter.index} + 1">1</th>
     <td th:text="${medicalTest.name}"></td>
-    <td> <a th:href="@{/analize/edit/{id}(id=${medicalTest.id})}">
+    <td> <a th:href="@{/medical-tests/edit/{id}(id=${medicalTest.id})}">
       <center><i class="fa-solid fa-pen"></i></center>
     </a>
     </td>
-    <td> <a th:href="@{/analize/delete/{id}(id=${medicalTest.id})}">
+    <td> <a th:href="@{/medical-tests/delete/{id}(id=${medicalTest.id})}">
       <center><i class="fa-solid fa-trash" style="color:#c4443c"></i></center>
           </a>
     </td>
@@ -132,7 +132,7 @@
   </tbody>
 </table>
 </center>
-<center><a th:href="@{/analize/add}" class="btn btn-primary active" role="button" aria-pressed="true">Adaugă o analiză</a></center>
+<center><a th:href="@{/medical-tests/add}" class="btn btn-primary active" role="button" aria-pressed="true">Adaugă o analiză</a></center>
 
 
 <!-- Footer -->
