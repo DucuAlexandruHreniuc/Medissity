@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:href="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Medissity</title>
+  <link rel="shortcut icon" href="https://www.svgrepo.com/show/28498/letter-m.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css" integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!--  <script src="http://localhost:35729/livereload.js"></script>-->
+<!--  &lt;!&ndash; CSS only &ndash;&gt;-->
+<!--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">-->
+<!--  &lt;!&ndash; JavaScript Bundle with Popper &ndash;&gt;-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>-->
+  <style>
+  /* Modify the background color */
+
+        .navbar-custom {
+            background-color: #f0f4ec;
+        }
+        /* Modify brand and text color */
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-text {
+            color: #f0f4ec;
+        }</style>
+
+</head>
+<body>
+<!--Navbar-->
+<nav class="navbar navbar-custom navbar-expand fixed-top" >
+
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+
+          <a class="nav-link active" aria-current="page" th:href="@{/diagnostic/}"> <i class="fa-solid fa-house"></i> Acasă</a>
+        </li>
+
+        <li class="nav-item dropdown">
+
+          <a style="color:black" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" ><i class="fa-solid fa-square-plus"></i>
+            Adăugare
+          </a>
+          <ul class="dropdown-menu">
+            <li><a th:href="@{/diagnostic/add}" class="dropdown-item" aria-pressed="true"> <i class="fa-solid fa-plus"></i> Adaugă un diagnostic</a>
+            </li>
+
+            <li><a th:href="@{/analize/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă analize</a>
+            </li>
+
+            <li><a th:href="@{/imagistica/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă imagistică</a>
+            </li>
+
+            <li><a th:href="@{/symptoms/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă un simptom</a>
+            </li>
+
+            <!--                        <li><hr class="dropdown-divider"></li>-->
+            <!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+
+          <a style="color:black" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-clipboard-list"></i>
+            Liste
+          </a>
+          <ul class="dropdown-menu">
+            <li><a th:href="@{/diagnostic/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă diagnostice</a></li>
+            <li><a th:href="@{/analize/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă analize</a></li>
+            <li><a th:href="@{/imagistica/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă imagistică</a>
+            <li><a th:href="@{/symptoms/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă simptome</a>
+
+            </li>
+            <!--                        <li><hr class="dropdown-divider"></li>-->
+            <!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+          </ul>
+
+
+
+
+        </li>
+        <!--                <li class="nav-item">-->
+        <!--                    <a class="nav-link disabled">Polițe</a>-->
+        <!--                </li>-->
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/policies/}">Polițe</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+
+        <input class="form-control me-2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Caută diagnostic..." aria-label="Search">
+
+        <!--                <input class="form-control me-2" type="search" id="myInput" onkeyup="myFunction()" placeholder="Căutare" aria-label="Search">-->
+
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+<center>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <h2 th:text="'Schimba numele analizei ' + ${medicalTest.name}"></h2>
+  <form method="post" th:action="@{/analize/edit}">
+    <input type="hidden" th:value="${medicalTest.id}" name="medicalTest_id">
+    <div class="mb-3">
+
+      <input th:value="${medicalTest.name}" type="text" class="form-control" id="name" aria-describedby="name" name="medicalTest_name" style="margin: 10px;width: 700px;">
+      <div id="nameHelp" class="form-text">(Noul nume al analizei)</div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Confirmare</button>
+
+  </form>
+
+</div>
+</center>
+<!--<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">-->
+
+<!--<ul id="myUL">-->
+<!--  <li><a th:each = "diagnostic : ${diagnostics}"></a></li>-->
+<!--  <li><a th:text="${diagnostic.name}"></a></li>-->
+<!--  -->
+<!--</ul>-->
+<!-- Footer -->
+<footer class="page-footer font-small teal pt-4">
+
+  <div class="container-fluid text-center text-md-left">
+    <div class="row">
+      <div class="col-md-6 mt-md-0 mt-3">
+        <h5 class="text-uppercase font-weight-bold"></h5>
+        <p>
+      </div>
+      <hr class="clearfix w-100 d-md-none pb-3">
+      <div class="col-md-6 mb-md-0 mb-3">
+      </div>
+      <h5 class="text-uppercase font-weight-bold">Medissity</h5>
+      <div class="footer-copyright text-center py-3">© 2022
+        <a href="https://www.telios.ro/">Powered by<br><img src="https://www.telios.ro/hubfs/Telios-logos/Telios-Care-logo-color.svg" class="hs-image-widget " style="width:150px;border-width:0px;border:0px;" width="200" alt="Telios-Care-logo-color" title="Telios-Care-logo-color"></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+</body>
+</html>
