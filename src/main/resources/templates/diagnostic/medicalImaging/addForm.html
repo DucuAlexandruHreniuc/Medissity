@@ -3,10 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Medissity</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="shortcut icon" href="https://www.svgrepo.com/show/28498/letter-m.svg">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css" integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>    <style>
+         #snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+        }
+    </style>
     <style>
   /* Modify the background color */
 
@@ -18,7 +63,9 @@
         .navbar-custom .navbar-brand,
         .navbar-custom .navbar-text {
             color: #f0f4ec;
-        }</style>
+
+
+</style>
 </head>
 <body>
 <!--Navbar-->
@@ -86,7 +133,7 @@
             </ul>
             <form class="d-flex" role="search">
 
-                <input class="form-control me-2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Caută..." aria-label="Search">
+                <input class="form-control me-2" type="text" id="myInput" placeholder="Caută..." aria-label="Search">
 
                 <!--                <input class="form-control me-2" type="search" id="myInput" onkeyup="myFunction()" placeholder="Căutare" aria-label="Search">-->
 
@@ -100,10 +147,11 @@
     <br>
     <br>
     <center><h1>Adaugă imagistică</h1>
-        <form method="post" action="/imaging/add">
-            <input style="margin: 10px;width: 700px;" type="text" name="medicalImaging_name" class="form-control" placeholder="Nume imagistică" required="" id="name" aria-describedby="name" oninvalid="this.setCustomValidity('Numele trebuie să fie valid')" autofocus>
+        <form method="post" action="/imaging/add" onsubmit="myFunction()">
+            <input style="margin: 10px;width: 700px;" type="text" name="medicalImaging_name" class="form-control" placeholder="Nume imagistică" required="" id="name" aria-describedby="name"  autofocus>
+<!--            oninvalid="this.setCustomValidity('Numele trebuie să fie valid')"-->
             <button type="submit" class="btn btn-primary">Confirmare</button><br>
-
+            <div id="snackbar">Success</div>
         </form>
     </center>
     <!--  <br>-->
@@ -129,6 +177,14 @@
     </div>
 </footer>
 <!-- Footer -->
+
+<script>
+function myFunction() {
+ var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
