@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import ro.siit.medissity.model.Diagnostic;
 import ro.siit.medissity.model.MedicalTest;
 import ro.siit.medissity.repository.MedicalTestRepositoryJpa;
 
@@ -30,12 +31,20 @@ public class MedicalTestController {
         return "diagnostic/medicalTest/addForm";
     }
     @PostMapping("/add")
-    public RedirectView addMedicalTest(Model model,
+    public String addMedicalTest(Model model,
                                        @RequestParam("medicalTest_name") String medicalTestName) {
-        MedicalTest addedMedicalTest = new MedicalTest(UUID.randomUUID(), medicalTestName);
+        Optional<MedicalTest> preExistingMedicalTest = medicalTestRepositoryJpa.findByName(medicalTestName);
+        if (preExistingMedicalTest.isPresent()){
+            model.addAttribute("error", "Analiza \""+ medicalTestName + "\" există deja în listă");
 
-        medicalTestRepositoryJpa.saveAndFlush(addedMedicalTest);
-        return new RedirectView("/medical-tests/");
+        }
+        else{
+        MedicalTest addedMedicalTest = new MedicalTest(UUID.randomUUID(), medicalTestName);
+            medicalTestRepositoryJpa.saveAndFlush(addedMedicalTest);
+            model.addAttribute("success", "Analiza \"" + medicalTestName + "\" a fost adăugată cu succes" );}
+
+
+        return "diagnostic/medicalTest/addForm";
 
 
     }

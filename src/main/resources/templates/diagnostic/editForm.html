@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="https://www.svgrepo.com/show/28498/letter-m.svg">
+  <link rel="shortcut icon" href="https://cdn.cdnlogo.com/logos/m/90/medium-m.svg">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -11,6 +11,50 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   <title>Medissity</title>
+  <style>
+       div.scroll {
+                width: 100%;
+                height: 200px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                text-align:justify;
+            }
+  </style>
+ <style>
+   .multiselect {
+  width: 700px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+ </style>
   <script>
   function filter() {
     var keyword = document.getElementById("search").value;
@@ -214,11 +258,88 @@ function filter3() {
 
     </form>
 
-
-
-    <!--  CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC-->
   </div>
 </center>
+    <!--  CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC-->
+
+<!--    <form name='f' method="POST" th:action="@{|/diagnostics/${diagnostic.id}/assignAll|}">-->
+<!--      <div class="multiselect">-->
+<!--        <div class="selectBox" onclick="showCheckboxes()">-->
+<!--          <select  >-->
+<!--            <option>Select an option</option>-->
+<!--          </select>-->
+<!--          <div class="overSelect"></div>-->
+<!--        </div>-->
+<!--        <div style="width:500px;"  id="checkboxes">-->
+<!--          <th:block th:each="medicalTest: ${unassignedMedicalTests}">-->
+<!--          <label>-->
+<!--            <input style="float:left"-->
+<!--                       th:value="${medicalTest.id}"-->
+<!--                   th:text="${medicalTest.name}" type="checkbox" id="one" /><br></label>-->
+<!--          </th:block>-->
+<!--        </div>-->
+<!--                </div>-->
+<!--              </form>-->
+
+
+
+
+
+<!--UPDATE!!!-->
+<!--<section class="vh-100" >-->
+
+<!--  <div class= "container py-5 h-100" style="width:3000px" >-->
+
+<!--    <div class="row d-flex justify-content-center align-items-center h-100">-->
+
+<!--      <div class="col col-lg-8 col-xl-6">-->
+
+<!--        <div class="card rounded-3">-->
+
+<!--          <center><p class="mb-2"><span class="h2 me-2"><i class="fa-solid fa-syringe fa-lg" style="padding-top:30px;color:#60ac44"></i>Analize</span> <span-->
+<!--                  class="badge bg-danger">checklist</span></p>-->
+<!--          <p class="text-muted pb-2">Atribuie analize</p></center>-->
+<!--          <input type="text" name="search" style="margin: 10px;width: 615px;" onkeyup="filter()" placeholder="Cauta analize...">-->
+<!--            <ul class="list-group rounded-0">-->
+<!--              <div class="card-body p-4 scroll ">-->
+<!--              <th:block th:each="medicalTest: ${unassignedMedicalTests}">-->
+<!--                <li class="list-group-item border-0 d-flex align-items-center ps-0">-->
+<!--                  <input class="form-check-input me-3" type="checkbox" value="sax" aria-label="..." th:text="${medicalTest.name}" >-->
+<!--&lt;!&ndash;                    <small style="font-size: 17px;padding-top:2px"  th:text="${medicalTest.name}"></small>&ndash;&gt;-->
+<!--              </li>-->
+<!--                </th:block>-->
+<!--              </div>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
 <center>
   <!--<div>-->
   <!--  <br>-->
@@ -298,6 +419,10 @@ function filter3() {
     </div>
   </center>
 </center>
+
+
+
+
 <!-- Footer -->
 <footer class="page-footer font-small teal pt-4">
 
@@ -317,6 +442,20 @@ function filter3() {
     </div>
   </div>
 </footer>
+<script>
+  var expanded = false;
+
+function showCheckboxes() {
+  var checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
+</script>
 <!-- Footer -->
 <script>
 $(document).ready(function(){

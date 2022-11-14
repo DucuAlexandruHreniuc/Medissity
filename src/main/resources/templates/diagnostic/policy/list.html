@@ -11,12 +11,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
+
+        .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #dfe3df;
+}
+    </style>
+    <style>
   /* Modify the background color */
 
         .navbar-custom {
-            background-color: #f0f4ec;
-        }
-        /* Modify brand and text color */
+  background-color:  #f0f4ec;}
+          /* Modify brand and text color */
 
         .navbar-custom .navbar-brand,
         .navbar-custom .navbar-text {
@@ -55,6 +60,9 @@
                         </li>
 
                         <li><a th:href="@{/symptoms/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă un simptom</a>
+                        </li>
+
+                        <li><a th:href="@{/policies/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă o poliță</a>
                         </li>
 
                         <!--                        <li><hr class="dropdown-divider"></li>-->
@@ -105,10 +113,10 @@
     <h1><center>Polițe</center></h1>
 
     <table class="table table-hover" style="width:90%" >
-        <thead style="background-color:#fffae6">
+        <thead style="background-color:#fbf9e9">
         <tr>
             <th width="50">#</th>
-            <th width="880">Nume</th>
+            <th width="1100">Nume</th>
             <th><center>Vezi polița</center></th>
             <th><center>Șterge</center></th>
         </tr>

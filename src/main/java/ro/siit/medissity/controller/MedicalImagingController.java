@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import ro.siit.medissity.model.Diagnostic;
 import ro.siit.medissity.model.MedicalImaging;
 import ro.siit.medissity.repository.MedicalImagingRepositoryJpa;
 
@@ -30,12 +31,20 @@ public class MedicalImagingController {
     }
 
     @PostMapping("/add")
-    public RedirectView addMedicalImaging(Model model,
+    public String addMedicalImaging(Model model,
                                           @RequestParam("medicalImaging_name") String medicalImagingName) {
+        Optional<MedicalImaging> preExistingImaging = medicalImagingRepositoryJpa.findByName(medicalImagingName);
+        if(preExistingImaging.isPresent()){
+            model.addAttribute("error", "Investigația de imagistică \""+ medicalImagingName + "\" există deja în listă");
+        }
+        else{
         MedicalImaging addedMedicalImaging = new MedicalImaging(UUID.randomUUID(), medicalImagingName);
-
         medicalImagingRepositoryJpa.saveAndFlush(addedMedicalImaging);
-        return new RedirectView("/imaging/add");
+        model.addAttribute("success", "Investigația de imagistică \"" + medicalImagingName + "\" a fost adăugată cu succes" );}
+        return "diagnostic/medicalImaging/addForm";
+
+
+//        return "diagnostic/addForm";
 
     }
     @GetMapping("/edit/{id}")

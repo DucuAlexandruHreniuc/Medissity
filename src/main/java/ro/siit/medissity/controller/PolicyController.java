@@ -8,6 +8,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import ro.siit.medissity.model.Policy;
 import ro.siit.medissity.repository.PolicyRepositoryJpa;
 import javax.annotation.PostConstruct;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -33,11 +34,18 @@ public class PolicyController {
     }
 
     @PostMapping("/add")
-    public RedirectView addPolicy(Model model,
+    public String addPolicy(Model model,
                                             @RequestParam("policy_name") String policyName, @RequestParam("policy_link") String link) {
+        Optional <Policy> preExistingPolicy = policyRepositoryJpa.findByName(policyName);
+        if (preExistingPolicy.isPresent()){
+            model.addAttribute("error", "Polița \""+ policyName + "\" există deja în listă");
+
+        }else{
         Policy addedPolicy = new Policy(UUID.randomUUID(), policyName, link);
         policyRepositoryJpa.saveAndFlush(addedPolicy);
-        return new RedirectView("/policies/");
+        model.addAttribute("success", "Polița \"" + policyName + "\" a fost adăugată cu succes" );}
+
+        return "diagnostic/policy/addForm";
     }
 
 //    @GetMapping("/edit/{id}")

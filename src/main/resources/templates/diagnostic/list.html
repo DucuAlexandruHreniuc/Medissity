@@ -36,6 +36,22 @@
 
     <style>
 
+        .btn-light:hover {
+   background-image: linear-gradient(to right,   #8fc9f0 0%,    #8fc9f0 51%,#448ccc 100%);
+         background-color:#ffffff;
+    background-size: 200% auto;
+    color: #ffffff !important;
+    border-radius: 25px;
+    font-weight: 400;
+    font-size: 16px;
+    font-weight: bold;
+    border: none !important;
+
+}
+    </style>
+
+    <style>
+
 
     .column {
   float: left;
@@ -59,7 +75,7 @@
   /* Modify the background color */
 
         .navbar-custom {
-            background-color: #f0f4ec;
+            background-color:  #f0f4ec;
         }
         /* Modify brand and text color */
 
@@ -169,10 +185,10 @@
 <br>
 <br>
 <h1 style="margin-bottom:15px"><center>Listă diagnostice</center></h1>
-<div style="margin-right:50px;margin-left:50px;" class="accordion" id="accordionExample" >
+<div style="margin-right:75px;margin-left:75px;" class="accordion" id="accordionExample" >
     <div class="accordion-item "  th:each="diagnostic: ${diagnostics}">
         <div  id="myDIV"> <h2 class="accordion-header" th:id="heading+${diagnostic.id}">
-            <button class="accordion-button collapsed d-block text-center" type="button" data-bs-toggle="collapse" th:data-bs-target="'#collapse'+${diagnostic.id}" aria-expanded="true" th:aria-controls="collapse+${diagnostic.id}" th:text="${diagnostic.name}" ><i class="fa-solid fa-angles-right" style="float:left"></i><i class="fa-solid fa-angles-left" style="float:right"></i>
+            <button class="accordion-button collapsed d-block text-center btn btn-light" type="button" data-bs-toggle="collapse" th:data-bs-target="'#collapse'+${diagnostic.id}" aria-expanded="true" th:aria-controls="collapse+${diagnostic.id}" th:text="${diagnostic.name}" >
             </button>
         </h2></div>
 

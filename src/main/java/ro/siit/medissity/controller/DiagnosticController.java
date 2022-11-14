@@ -1,8 +1,11 @@
 package ro.siit.medissity.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import ro.siit.medissity.model.*;
@@ -213,14 +216,20 @@ public class DiagnosticController {
         return "diagnostic/addForm";
     }
     @PostMapping("/add")
-    public RedirectView addDiagnostics(Model model,
-
+    public String addDiagnostics(Model model,
                                        @RequestParam("diagnostic_name") String diagnosticName) {
-        Diagnostic addedDiagnostic = new Diagnostic(UUID.randomUUID(), diagnosticName);
+        Optional<Diagnostic> preExistingDiagnostic = diagnosticRepositoryJpa.findByName(diagnosticName);
+        if (preExistingDiagnostic.isPresent()) {
+            model.addAttribute("error", "Diagnosticul \"" + diagnosticName +"\" există deja în listă");
+        }
+        else {
+            Diagnostic addedDiagnostic = new Diagnostic(UUID.randomUUID(), diagnosticName);
+            diagnosticRepositoryJpa.saveAndFlush(addedDiagnostic);
+            model.addAttribute("success","Diagnosticul \"" + diagnosticName + "\" a fost adăugat cu succes");
+        }
 
-
-        diagnosticRepositoryJpa.saveAndFlush(addedDiagnostic);
-        return new RedirectView("/diagnostics/");
+        return "diagnostic/addForm";
+//        return "redirect:/diagnostics/add";
     }
     @GetMapping("/edit/{id}")
     public String editDiangosticFormTests(Model model, @PathVariable("id") UUID diangosticId) {

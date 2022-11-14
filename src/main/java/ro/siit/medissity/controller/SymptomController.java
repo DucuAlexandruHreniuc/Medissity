@@ -30,11 +30,17 @@ public class SymptomController {
         return "diagnostic/symptom/addForm";
     }
     @PostMapping("/add")
-    public RedirectView addSymptom(Model model,
+    public String addSymptom(Model model,
                                    @RequestParam("symptom_name") String symptomName) {
+        Optional <Symptom> preExistingSymptom = symptomRepositoryJpa.findByName(symptomName);
+        if (preExistingSymptom.isPresent()){
+            model.addAttribute("error", "Simptomul \""+ symptomName + "\" există deja în listă");
+
+        }else{
         Symptom addedSymptom = new Symptom(UUID.randomUUID(), symptomName);
         symptomRepositoryJpa.saveAndFlush(addedSymptom);
-        return new RedirectView("/symptoms/");
+        model.addAttribute("success", "Simptomul \"" + symptomName + "\" a fost adăugat cu succes" );}
+        return "diagnostic/symptom/addForm";
     }
 
     @GetMapping("/edit/{id}")
