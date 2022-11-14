@@ -260,118 +260,6 @@ function filter3() {
 
   </div>
 </center>
-    <!--  CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC-->
-
-<!--    <form name='f' method="POST" th:action="@{|/diagnostics/${diagnostic.id}/assignAll|}">-->
-<!--      <div class="multiselect">-->
-<!--        <div class="selectBox" onclick="showCheckboxes()">-->
-<!--          <select  >-->
-<!--            <option>Select an option</option>-->
-<!--          </select>-->
-<!--          <div class="overSelect"></div>-->
-<!--        </div>-->
-<!--        <div style="width:500px;"  id="checkboxes">-->
-<!--          <th:block th:each="medicalTest: ${unassignedMedicalTests}">-->
-<!--          <label>-->
-<!--            <input style="float:left"-->
-<!--                       th:value="${medicalTest.id}"-->
-<!--                   th:text="${medicalTest.name}" type="checkbox" id="one" /><br></label>-->
-<!--          </th:block>-->
-<!--        </div>-->
-<!--                </div>-->
-<!--              </form>-->
-
-
-
-
-
-<!--UPDATE!!!-->
-<!--<section class="vh-100" >-->
-
-<!--  <div class= "container py-5 h-100" style="width:3000px" >-->
-
-<!--    <div class="row d-flex justify-content-center align-items-center h-100">-->
-
-<!--      <div class="col col-lg-8 col-xl-6">-->
-
-<!--        <div class="card rounded-3">-->
-
-<!--          <center><p class="mb-2"><span class="h2 me-2"><i class="fa-solid fa-syringe fa-lg" style="padding-top:30px;color:#60ac44"></i>Analize</span> <span-->
-<!--                  class="badge bg-danger">checklist</span></p>-->
-<!--          <p class="text-muted pb-2">Atribuie analize</p></center>-->
-<!--          <input type="text" name="search" style="margin: 10px;width: 615px;" onkeyup="filter()" placeholder="Cauta analize...">-->
-<!--            <ul class="list-group rounded-0">-->
-<!--              <div class="card-body p-4 scroll ">-->
-<!--              <th:block th:each="medicalTest: ${unassignedMedicalTests}">-->
-<!--                <li class="list-group-item border-0 d-flex align-items-center ps-0">-->
-<!--                  <input class="form-check-input me-3" type="checkbox" value="sax" aria-label="..." th:text="${medicalTest.name}" >-->
-<!--&lt;!&ndash;                    <small style="font-size: 17px;padding-top:2px"  th:text="${medicalTest.name}"></small>&ndash;&gt;-->
-<!--              </li>-->
-<!--                </th:block>-->
-<!--              </div>-->
-<!--            </ul>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--</section>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-<center>
-  <!--<div>-->
-  <!--  <br>-->
-  <!--  <br>-->
-  <!--  <br>-->
-  <!--  ASSIGN ALL-->
-  <!--  <form name='f' method="POST" th:action="@{|/diagnostics/${diagnostic.id}/assignAll|}">-->
-  <!--    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalTests">-->
-  <!--      <option th:each="medicalTest : ${unassignedMedicalTests}"-->
-  <!--              th:value="${medicalTest.id}"-->
-  <!--              th:text="${medicalTest.name}"></option>-->
-
-  <!--    </select>-->
-
-  <!--    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalImagingList">-->
-
-  <!--      <option th:each="medicalImaging : ${unassignedMedicalImaging}"-->
-  <!--              th:value="${medicalImaging.id}"-->
-  <!--              th:text="${medicalImaging.name}"></option>-->
-  <!--    </select>-->
-
-  <!--    <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="symptoms">-->
-  <!--      <option th:each="symptom : ${unassignedSymptoms}"-->
-  <!--              th:value="${symptom.id}"-->
-  <!--              th:text="${symptom.name}"></option>-->
-  <!--    </select>-->
-
-  <!--    <button type="submit" class="btn btn-outline-primary">Asignează toate investigatiile</button><br>-->
-  <!--  </form>-->
-  <!--</div>-->
-  <!--</center>-->
-  <!--<center>-->
   <center>
     <br>
     <hr class="solid">
@@ -410,10 +298,6 @@ function filter3() {
           </div>
 
           <button type="submit" class="btn btn-outline-danger" ><i class="fa-solid fa-link-slash fa-lg"  style="color:#c4443c;"></i> Dezatribuie toate investigațiile selectate  </button><br>
-
-          <!--    <button th:href="@{/diagnostics/delete/{id}(id=${diagnostic.id})}" class="btn btn-outline-danger" ><i class="fa-solid fa-trash fa-lg"  style="color:#c4443c"></i> Șterge diagnosticul </button><br>-->
-
-
         </form>
       </div>
     </div>
@@ -468,6 +352,37 @@ $(document).ready(function(){
 });
 
 </script>
+
+<!--UPDATE!!!-->
+<!--<section class="vh-100" >-->
+
+<!--  <div class= "container py-5 h-100" style="width:3000px" >-->
+
+<!--    <div class="row d-flex justify-content-center align-items-center h-100">-->
+
+<!--      <div class="col col-lg-8 col-xl-6">-->
+
+<!--        <div class="card rounded-3">-->
+
+<!--          <center><p class="mb-2"><span class="h2 me-2"><i class="fa-solid fa-syringe fa-lg" style="padding-top:30px;color:#60ac44"></i>Analize</span> <span-->
+<!--                  class="badge bg-danger">checklist</span></p>-->
+<!--          <p class="text-muted pb-2">Atribuie analize</p></center>-->
+<!--          <input type="text" name="search" style="margin: 10px;width: 615px;" onkeyup="filter()" placeholder="Cauta analize...">-->
+<!--            <ul class="list-group rounded-0">-->
+<!--              <div class="card-body p-4 scroll ">-->
+<!--              <th:block th:each="medicalTest: ${unassignedMedicalTests}">-->
+<!--                <li class="list-group-item border-0 d-flex align-items-center ps-0">-->
+<!--                  <input class="form-check-input me-3" type="checkbox" value="sax" aria-label="..." th:text="${medicalTest.name}" >-->
+<!--&lt;!&ndash;                    <small style="font-size: 17px;padding-top:2px"  th:text="${medicalTest.name}"></small>&ndash;&gt;-->
+<!--              </li>-->
+<!--                </th:block>-->
+<!--              </div>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--</section>-->
 
 </body>
 </html>

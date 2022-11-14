@@ -85,20 +85,6 @@
         }</style>
 
 </head>
-<!-- Extra collapsed bar-->
-<!--<div class="collapse" id="navbarToggleExternalContent">-->
-<!--    <div class="bg-dark p-4">-->
-<!--        <h5 class="text-white h4">Collapsed content</h5>-->
-<!--        <span class="text-muted">Toggleable via the navbar brand.</span>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<nav class="navbar navbar-dark bg-dark">-->
-<!--    <div class="container-fluid">-->
-<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
-<!--    </div>-->
-<!--</nav>-->
 <body>
 
 <!--Navbar-->
@@ -133,8 +119,6 @@
                         <li><a th:href="@{/symptoms/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă un simptom</a>
                         </li>
 
-                        <!--                        <li><hr class="dropdown-divider"></li>-->
-                        <!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -147,31 +131,15 @@
                         <li><a th:href="@{/imaging/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă imagistică</a>
                         <li><a th:href="@{/symptoms/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă simptome</a>
                         </li>
-                        <!--                        <li><hr class="dropdown-divider"></li>-->
-                        <!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
                     </ul>
-
-
-
-
                 </li>
-                <!--                <li class="nav-item">-->
-                <!--                    <a class="nav-link disabled">Polițe</a>-->
-                <!--                </li>-->
                 <li class="nav-item">
                     <a style = "color:black" class="nav-link active" aria-current="page" th:href="@{/policies/}">Polițe</a>
                 </li>
             </ul>
             <div style="float:right">
             <form class="d-flex" role="search">
-
                 <input class="form-control me-2" type="text" id="myInput" onkeyup="function()" placeholder="Caută..." aria-label="Search" >
-
-                <!--                <input class="form-control me-2" type="search" id="myInput" onkeyup="myFunction()" placeholder="Căutare" aria-label="Search">-->
-
-                <!--                <button class="btn btn-outline-success" id="myInput"  type="submit">Caută</button>-->
-                <!--                <input class="form-control" id="myInput" type="text" placeholder="Search..">-->
-
             </form>
         </div>
         </div>
@@ -220,13 +188,6 @@
                     <div class="accordion-body" th:text="${diagnostic.symptomNames}">
                     </div>
                 </div>
-                <!--                    <div style = "position:relative; left:1480px; top:2px;">-->
-                <!--                    <a th:href="@{/diagnostics/edit/{id}(id=${diagnostic.id})}">-->
-                <!--                        <i class="fa-solid fa-pen fa-lg"></i></a>-->
-
-                <!--                    <a th:href="@{/diagnostics/delete/{id}(id=${diagnostic.id})}">-->
-                <!--                        <i class="fa-solid fa-trash fa-lg"></i></a>-->
-                <!--                    </div>-->
             </div>
         </div>
     </div>
