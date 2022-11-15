@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-import ro.siit.medissity.model.Diagnostic;
 import ro.siit.medissity.model.MedicalImaging;
 import ro.siit.medissity.repository.MedicalImagingRepositoryJpa;
 
@@ -42,9 +41,6 @@ public class MedicalImagingController {
         medicalImagingRepositoryJpa.saveAndFlush(addedMedicalImaging);
         model.addAttribute("success", "Investigația de imagistică \"" + medicalImagingName + "\" a fost adăugată cu succes" );}
         return "diagnostic/medicalImaging/addForm";
-
-
-//        return "diagnostic/addForm";
 
     }
     @GetMapping("/edit/{id}")

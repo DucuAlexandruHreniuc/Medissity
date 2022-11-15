@@ -5,39 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Medissity</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="shortcut icon" href="https://www.svgrepo.com/show/28498/letter-m.svg">
+    <link rel="shortcut icon" href="https://cdn.cdnlogo.com/logos/m/90/medium-m.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css" integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
-    function myFunction() {
-    // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
 
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-    txtValue = td.textContent || td.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-    tr[i].style.display = "";
-    } else {
-    tr[i].style.display = "none";
-    }
-    }
-    }
-    }
     </script>
 
     <style>
 
         .btn-light:hover {
-   background-image: linear-gradient(to right,   #8fc9f0 0%,    #8fc9f0 51%,#448ccc 100%);
+   background-image: linear-gradient(to right,  #73bff2 0%,   #73bff2 51%,#448ccc 100%);
          background-color:#ffffff;
     background-size: 200% auto;
     color: #ffffff !important;
@@ -122,7 +102,6 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-
                     <a style="color:black" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-clipboard-list"></i>
                         Liste
                     </a>
@@ -132,14 +111,18 @@
                         <li><a th:href="@{/symptoms/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă simptome</a>
                         </li>
                     </ul>
+
                 </li>
                 <li class="nav-item">
                     <a style = "color:black" class="nav-link active" aria-current="page" th:href="@{/policies/}">Polițe</a>
                 </li>
+
             </ul>
-            <div style="float:right">
-            <form class="d-flex" role="search">
+            <div style="float:right" class="d-flex" >
                 <input class="form-control me-2" type="text" id="myInput" onkeyup="function()" placeholder="Caută..." aria-label="Search" >
+                <form  method="POST" th:action="@{/logout}" class="d-flex" >
+<!--                <button title="Logout" class="btn btn-outline-danger btn-sm" style="margin-top:0.79px;height:36.6px;margin-right:7px" type="submit"><i style="" class="fa-solid fa-right-from-bracket"></i></button>-->
+                    <a th:href="@{/logout}" onclick="return confirm('Confirmi deconectarea?')" style="margin-right:8px;margin-top:7px;color:#c4443c" title="Deconectare" type="submit"><i style="" class="fa-solid fa-power-off fa-xl"></i></a>
             </form>
         </div>
         </div>
@@ -163,7 +146,7 @@
         <div th:id="collapse+${diagnostic.id}" class="accordion-collapse collapse" th:aria-labelledby="heading+${diagnostic.id}" data-bs-parent="#accordionExample">
             </p>
             <div>
-                <a onclick="return confirm('Are you sure to delete?')" th:href="@{/diagnostics/delete/{id}(id=${diagnostic.id})}" title="Șterge" >
+                <a onclick="return confirm('Confirmi ștergerea?')" th:href="@{/diagnostics/delete/{id}(id=${diagnostic.id})}" title="Șterge" >
                     <i class="fa-solid fa-trash fa-lg" style="float: right; padding: 5px; color:#c4443c" ></i></a>
 
                 <a th:href="@{/diagnostics/edit/{id}(id=${diagnostic.id})}" title="Editează">
@@ -213,6 +196,8 @@
     </div>
 </footer>
 <!-- Footer -->
+
+
 
 
 

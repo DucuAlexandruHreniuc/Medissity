@@ -18,7 +18,6 @@ public class MedicalTest {
         this.id = id;
         this.name = name;
     }
-
     public UUID getId() {
         return id;
     }
@@ -34,5 +33,4 @@ public class MedicalTest {
     public void setName(String name) {
         this.name = name;
     }
-
 }

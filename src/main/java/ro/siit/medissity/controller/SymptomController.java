@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import ro.siit.medissity.model.Symptom;
 import ro.siit.medissity.repository.SymptomRepositoryJpa;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

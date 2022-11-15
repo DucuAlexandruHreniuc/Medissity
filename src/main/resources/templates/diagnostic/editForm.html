@@ -145,8 +145,6 @@ function filter3() {
             <li><a th:href="@{/symptoms/add}" class="dropdown-item" aria-pressed="true"><i class="fa-solid fa-plus"></i> Adaugă un simptom</a>
             </li>
 
-            <!--                        <li><hr class="dropdown-divider"></li>-->
-            <!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -161,32 +159,23 @@ function filter3() {
             <li><a th:href="@{/symptoms/}" class="dropdown-item"  aria-pressed="true"><i class="fa fa-list" aria-hidden="true"></i> Listă simptome</a>
 
             </li>
-            <!--                        <li><hr class="dropdown-divider"></li>-->
-            <!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
           </ul>
-
-
-
-
         </li>
-        <!--                <li class="nav-item">-->
-        <!--                    <a class="nav-link disabled">Polițe</a>-->
-        <!--                </li>-->
         <li class="nav-item">
 <!--          <a class="nav-link active" aria-current="page" th:href="@{/policies/}">Polițe</a>-->
           <a style = "color:black" class="nav-link active" aria-current="page" th:href="@{/policies/}">Polițe</a>
 
         </li>
       </ul>
-      <form class="d-flex" role="search">
-
-        <input class="form-control me-2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Caută..." aria-label="Search">
-
-        <!--                <input class="form-control me-2" type="search" id="myInput" onkeyup="myFunction()" placeholder="Căutare" aria-label="Search">-->
-
-      </form>
+      <div style="float:right" class="d-flex" >
+        <input class="form-control me-2" type="text" id="myInput" onkeyup="function()" placeholder="Caută..." aria-label="Search" >
+        <form  method="POST" th:action="@{/logout}" class="d-flex" >
+          <!--                <button title="Logout" class="btn btn-outline-danger btn-sm" style="margin-top:0.79px;height:36.6px;margin-right:7px" type="submit"><i style="" class="fa-solid fa-right-from-bracket"></i></button>-->
+          <a th:href="@{/logout}" onclick="return confirm('Confirmi deconectarea?')" style="margin-right:8px;margin-top:7px;color:#c4443c" title="Deconectare" type="submit"><i style="" class="fa-solid fa-power-off fa-xl"></i></a>
+        </form>
       </div>
     </div>
+  </div>
 </nav>
 
 <center>
@@ -195,7 +184,7 @@ function filter3() {
     <br>
     <br>
     <h2> Schimbă numele diagnosticului</h2>
-    <h2 style="text-decoration:underline"  th:text="${diagnostic.name}"></h2>
+    <h3 style="text-decoration:underline"  th:text="${diagnostic.name}"></h3>
     <form method="post" th:action="@{/diagnostics/edit}">
       <input type="hidden" th:value="${diagnostic.id}" name="diagnostic_id">
       <div class="mb-3">
@@ -353,7 +342,7 @@ $(document).ready(function(){
 
 </script>
 
-<!--UPDATE!!!-->
+<!--FUTURE UPDATE!!!-->
 <!--<section class="vh-100" >-->
 
 <!--  <div class= "container py-5 h-100" style="width:3000px" >-->

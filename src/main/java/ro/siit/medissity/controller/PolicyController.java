@@ -48,33 +48,11 @@ public class PolicyController {
         return "diagnostic/policy/addForm";
     }
 
-//    @GetMapping("/edit/{id}")
-//    public String editMedicalImaging(Model model, @PathVariable("id") UUID medicalImagingId) {
-//        Optional<MedicalImaging> optionalMedicalImaging = medicalImagingRepositoryJpa.findById(medicalImagingId);
-//        MedicalImaging medicalImaging = optionalMedicalImaging.get();
-//        model.addAttribute("medicalImaging", medicalImaging);
-//        List<MedicalImaging> allMedicalImaging = medicalImagingRepositoryJpa.findAll();
-//        model.addAttribute("allMedicalImaging", allMedicalImaging);
-//        return "diagnostic/medicalImaging/editForm";
-//    }
-//    @PostMapping("/edit")
-//    public RedirectView addMedicalImaging(Model model,
-//                                          @RequestParam("medicalImaging_id") UUID medicalImagingId,
-//                                          @RequestParam("medicalImaging_name") String updatedName)
-//    {
-//
-//        Optional<MedicalImaging> medicalImaging = medicalImagingRepositoryJpa.findById(medicalImagingId);
-//        medicalImaging.get().setName(updatedName);
-//        medicalImagingRepositoryJpa.save(medicalImaging.get());
-//        return new RedirectView("/imagistica/");
-//    }
     @GetMapping("/delete/{id}")
     public RedirectView deletePolicy(Model model, @PathVariable("id") UUID policyId) {
         policyRepositoryJpa.deleteById(policyId);
         return new RedirectView("/policies/");
     }
-
-
 }
 
 

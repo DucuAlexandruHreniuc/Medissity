@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-import ro.siit.medissity.model.Diagnostic;
 import ro.siit.medissity.model.MedicalTest;
 import ro.siit.medissity.repository.MedicalTestRepositoryJpa;
 
@@ -42,11 +41,7 @@ public class MedicalTestController {
         MedicalTest addedMedicalTest = new MedicalTest(UUID.randomUUID(), medicalTestName);
             medicalTestRepositoryJpa.saveAndFlush(addedMedicalTest);
             model.addAttribute("success", "Analiza \"" + medicalTestName + "\" a fost adăugată cu succes" );}
-
-
         return "diagnostic/medicalTest/addForm";
-
-
     }
     @GetMapping("/edit/{id}")
     public String editMedicalTest(Model model, @PathVariable("id") UUID medicalTestId) {

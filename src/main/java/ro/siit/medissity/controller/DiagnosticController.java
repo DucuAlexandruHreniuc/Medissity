@@ -1,11 +1,8 @@
 package ro.siit.medissity.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import ro.siit.medissity.model.*;
@@ -336,7 +333,6 @@ public class DiagnosticController {
     }
     @PostMapping("/{id}/assignMedicalTests")
     public RedirectView processFormTests(@PathVariable("id") UUID diagnosticId, @RequestParam UUID[] medicalTests) {
-//        System.out.println(Arrays.toString(medicalTests));
         Diagnostic diagnostic = diagnosticRepositoryJpa.findById(diagnosticId).get();
         for (UUID medicalTest : medicalTests) {
             MedicalTest medicalTestToAdd = medicalTestRepositoryJpa.findById(medicalTest).get();
@@ -373,10 +369,8 @@ public class DiagnosticController {
         return new RedirectView("/diagnostics/");
     }
 
-    //    Unassign
     @PostMapping("/{id}/unassignAll")
     public RedirectView processFormUnassignAll(@PathVariable("id") UUID diagnosticId, @RequestParam (required = false) UUID[] medicalTests, @RequestParam(required = false) UUID[] medicalImagingList, @RequestParam(required = false) UUID[]symptoms) {
-//        System.out.println(Arrays.toString(medicalTests));
         Diagnostic diagnostic = diagnosticRepositoryJpa.findById(diagnosticId).get();
         if(medicalTests != null){
             for (UUID medicalTest : medicalTests) {

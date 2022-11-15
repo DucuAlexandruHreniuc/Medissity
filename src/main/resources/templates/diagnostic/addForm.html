@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Medissity</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="shortcut icon" href="https://www.svgrepo.com/show/28498/letter-m.svg">
+  <link rel="shortcut icon" href="https://cdn.cdnlogo.com/logos/m/90/medium-m.svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css" integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -159,11 +159,13 @@
           <a class="nav-link active" aria-current="page" th:href="@{/policies/}">Polițe</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-
-        <input class="form-control me-2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Caută..." aria-label="Search">
-
-      </form>
+      <div style="float:right" class="d-flex" >
+        <input class="form-control me-2" type="text" id="myInput" onkeyup="function()" placeholder="Caută..." aria-label="Search" >
+        <form  method="POST" th:action="@{/logout}" class="d-flex" >
+          <!--                <button title="Logout" class="btn btn-outline-danger btn-sm" style="margin-top:0.79px;height:36.6px;margin-right:7px" type="submit"><i style="" class="fa-solid fa-right-from-bracket"></i></button>-->
+          <a th:href="@{/logout}" onclick="return confirm('Confirmi deconectarea?')" style="margin-right:8px;margin-top:7px;color:#c4443c" title="Deconectare" type="submit"><i style="" class="fa-solid fa-power-off fa-xl"></i></a>
+        </form>
+      </div>
     </div>
   </div>
 </nav>
@@ -182,7 +184,6 @@
   </div>
 </center>
 <div class="elementToFadeInAndOut">
-
 
 <h4 class="centered " style="color:red" th:text="${error}"></h4>
 <h4 class="centered" style="color:green" th:text="${success}"></h4>
