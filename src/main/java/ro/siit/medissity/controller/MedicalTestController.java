@@ -31,7 +31,8 @@ public class MedicalTestController {
     }
     @PostMapping("/add")
     public String addMedicalTest(Model model,
-                                       @RequestParam("medicalTest_name") String medicalTestName) {
+                                       @RequestParam("medicalTest_name") String medicalTestNameInput) {
+        String medicalTestName = medicalTestNameInput.substring(0, 1).toUpperCase() + medicalTestNameInput.substring(1);
         Optional<MedicalTest> preExistingMedicalTest = medicalTestRepositoryJpa.findByName(medicalTestName);
         if (preExistingMedicalTest.isPresent()){
             model.addAttribute("error", "Analiza \""+ medicalTestName + "\" există deja în listă");
@@ -53,15 +54,21 @@ public class MedicalTestController {
         return "diagnostic/medicalTest/editForm";
     }
     @PostMapping("/edit")
-    public RedirectView addMedicalTests(Model model,
+    public String addMedicalTests(Model model,
                                         @RequestParam("medicalTest_id") UUID medicalTestId,
                                         @RequestParam("medicalTest_name") String updatedName)
     {
-
+        String updatedNameCapitalized = updatedName.substring(0, 1).toUpperCase() + updatedName.substring(1);
+        Optional<MedicalTest> preExistingMedicalTest = medicalTestRepositoryJpa.findByName(updatedNameCapitalized);
+        if(preExistingMedicalTest.isPresent()){
+            model.addAttribute("error", "Numele \""+ updatedNameCapitalized + "\" există deja în listă");
+            return "diagnostic/error";
+        }
+        else{
         Optional<MedicalTest> medicalTest = medicalTestRepositoryJpa.findById(medicalTestId);
-        medicalTest.get().setName(updatedName);
-        medicalTestRepositoryJpa.save(medicalTest.get());
-        return new RedirectView("/medical-tests/");
+        medicalTest.get().setName(updatedNameCapitalized);
+        medicalTestRepositoryJpa.save(medicalTest.get());}
+        return "redirect:/medical-tests/edit/" + medicalTestId;
     }
     @GetMapping("/delete/{id}")
     public RedirectView deleteMedicalTest(Model model, @PathVariable("id") UUID medicalTestId) {

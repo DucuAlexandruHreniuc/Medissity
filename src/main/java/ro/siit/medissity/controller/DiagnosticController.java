@@ -18,6 +18,12 @@ public class DiagnosticController {
 
     @Autowired
     private DiagnosticRepositoryJpa diagnosticRepositoryJpa;
+    @Autowired
+    private MedicalTestRepositoryJpa medicalTestRepositoryJpa;
+    @Autowired
+    private MedicalImagingRepositoryJpa medicalImagingRepositoryJpa;
+    @Autowired
+    private SymptomRepositoryJpa symptomRepositoryJpa;
 
     /**
      * Hardcoded objects in repository
@@ -76,8 +82,6 @@ public class DiagnosticController {
             diagnosticRepositoryJpa.save(d0);
         }
     }
-    @Autowired
-    private MedicalTestRepositoryJpa medicalTestRepositoryJpa;
 
     @PostConstruct
     private void postConstructMedicalTest() {
@@ -120,10 +124,6 @@ public class DiagnosticController {
         }
     }
 
-
-    @Autowired
-    private MedicalImagingRepositoryJpa medicalImagingRepositoryJpa;
-
     @PostConstruct
     private void postConstructMedicalImaging() {
         String [] medicalImagingNames = {"Rezonanta magnetica nucleara (RMN)" ,
@@ -155,9 +155,6 @@ public class DiagnosticController {
             medicalImagingRepositoryJpa.save(i0);
         }
     }
-
-    @Autowired
-    private SymptomRepositoryJpa symptomRepositoryJpa;
 
     @PostConstruct
     private void postConstructSymptom() {
@@ -214,7 +211,8 @@ public class DiagnosticController {
     }
     @PostMapping("/add")
     public String addDiagnostics(Model model,
-                                       @RequestParam("diagnostic_name") String diagnosticName) {
+                                       @RequestParam("diagnostic_name") String diagnosticNameInput) {
+        String diagnosticName = diagnosticNameInput.substring(0, 1).toUpperCase() + diagnosticNameInput.substring(1);
         Optional<Diagnostic> preExistingDiagnostic = diagnosticRepositoryJpa.findByName(diagnosticName);
         if (preExistingDiagnostic.isPresent()) {
             model.addAttribute("error", "Diagnosticul \"" + diagnosticName +"\" există deja în listă");
@@ -266,25 +264,33 @@ public class DiagnosticController {
                 .collect(Collectors.toList());
         model.addAttribute("assignedSymptoms", assignedSymptoms);
         return "diagnostic/editForm";
-
     }
 
     @PostMapping("/edit")
-    public RedirectView addDiangostics(Model model,
+    public String addDiangostics(Model model,
                                        @RequestParam("diagnostic_id") UUID diagnosticId,
                                        @RequestParam("diagnostic_name") String updatedName)
     {
+        String updatedNameCapitalized = updatedName.substring(0, 1).toUpperCase() + updatedName.substring(1);
+        Optional <Diagnostic> preExistingDiagnostic = diagnosticRepositoryJpa.findByName(updatedNameCapitalized);
+        if (preExistingDiagnostic.isPresent()){
+            model.addAttribute("error", "Numele \""+ updatedNameCapitalized + "\" există deja în listă");
+            return "diagnostic/error";
 
+        }
+        else{
         Optional<Diagnostic> diangostic = diagnosticRepositoryJpa.findById(diagnosticId);
-        diangostic.get().setName(updatedName);
-        diagnosticRepositoryJpa.save(diangostic.get());
-        return new RedirectView("/diagnostics/");
+        diangostic.get().setName(updatedNameCapitalized);
+        diagnosticRepositoryJpa.save(diangostic.get());}
+        return "redirect:/diagnostics/edit/" + diagnosticId;
     }
     @GetMapping("/delete/{id}")
     public RedirectView deleteDiagnostic(Model model, @PathVariable("id") UUID diagnosticId) {
         diagnosticRepositoryJpa.deleteById(diagnosticId);
         return new RedirectView("/diagnostics/");
     }
+
+    //Previous assigns
     @GetMapping("/{id}/assignMedicalTest/{medicalTestId}")
     public RedirectView assignMedicalTest(Model model, @PathVariable("id") UUID diagnosticId, @PathVariable("medicalTestId") UUID medicalTestId) {
         Diagnostic diagnostic = diagnosticRepositoryJpa.findById(diagnosticId).get();
@@ -333,6 +339,7 @@ public class DiagnosticController {
     }
     @PostMapping("/{id}/assignMedicalTests")
     public RedirectView processFormTests(@PathVariable("id") UUID diagnosticId, @RequestParam UUID[] medicalTests) {
+//        System.out.println(Arrays.toString(medicalTests));
         Diagnostic diagnostic = diagnosticRepositoryJpa.findById(diagnosticId).get();
         for (UUID medicalTest : medicalTests) {
             MedicalTest medicalTestToAdd = medicalTestRepositoryJpa.findById(medicalTest).get();
@@ -341,6 +348,7 @@ public class DiagnosticController {
         diagnosticRepositoryJpa.save(diagnostic);
         return new RedirectView("/diagnostics/");
     }
+
 
     @PostMapping("/{id}/assignAll")
     public RedirectView processFormAll(@PathVariable("id") UUID diagnosticId, @RequestParam (required = false) UUID[] medicalTests, @RequestParam(required = false) UUID[] medicalImagingList, @RequestParam(required = false) UUID[]symptoms) {
@@ -384,7 +392,6 @@ public class DiagnosticController {
                 diagnostic.getMedicalImagingList().remove(medicalImagingToAdd);
             }
         }
-
         if(symptoms != null) {
             for (UUID symptom : symptoms) {
                 Symptom symptomToAdd = symptomRepositoryJpa.findById(symptom).get();

@@ -189,10 +189,10 @@ function filter3() {
       <input type="hidden" th:value="${diagnostic.id}" name="diagnostic_id">
       <div class="mb-3">
         <!--      <label for="name" class="form-label">Nume</label>-->
-        <input style="margin: 10px;width: 700px;" th:value="${diagnostic.name}" type="text" class="form-control" id="name" aria-describedby="name" name="diagnostic_name">
+        <input style="margin: 10px;width: 700px;" th:value="${diagnostic.name}" type="text" class="form-input form-control" id="name" aria-describedby="name" name="diagnostic_name">
         <div id="nameHelp" class="form-text">(Noul nume al diagnosticului)</div>
       </div>
-      <button type="submit" class="btn btn-primary">Confirmare</button><br>
+      <button type="submit" class="form-button btn btn-primary">Confirmare</button><br>
     </form>
     <br>
     <hr class="solid">
@@ -247,6 +247,8 @@ function filter3() {
 
     </form>
 
+
+
   </div>
 </center>
   <center>
@@ -271,7 +273,6 @@ function filter3() {
             </select>
 
             <select class="form-select" style="margin: 10px;width: 700px;"  aria-label="multiple select example" multiple name="medicalImagingList">
-
 
 
               <option
@@ -315,6 +316,29 @@ function filter3() {
     </div>
   </div>
 </footer>
+<script>
+    const formInput = document.querySelector(".form-input");
+const formButton = document.querySelector(".form-button");
+
+// the default state is 'disabled'
+formButton.disabled = true;
+
+// alternative is to use "change" - explained below
+formInput.addEventListener("keyup", buttonState);
+
+function buttonState() {
+    if (document.querySelector(".form-input").value === "") {
+        formButton.disabled = true; // return disabled as true whenever the input field is empty
+    } else {
+        formButton.disabled = false; // enable the button once the input field has content
+    }
+}
+
+// just verifying that the button has been clicked
+formButton.addEventListener("click", () => {
+console.log("You entered:", document.querySelector(".form-input").value);
+});
+</script>
 <script>
   var expanded = false;
 

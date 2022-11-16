@@ -35,7 +35,8 @@ public class PolicyController {
 
     @PostMapping("/add")
     public String addPolicy(Model model,
-                                            @RequestParam("policy_name") String policyName, @RequestParam("policy_link") String link) {
+                                            @RequestParam("policy_name") String policyNameInput, @RequestParam("policy_link") String link) {
+        String policyName = policyNameInput.substring(0, 1).toUpperCase() + policyNameInput.substring(1);
         Optional <Policy> preExistingPolicy = policyRepositoryJpa.findByName(policyName);
         if (preExistingPolicy.isPresent()){
             model.addAttribute("error", "Polița \""+ policyName + "\" există deja în listă");

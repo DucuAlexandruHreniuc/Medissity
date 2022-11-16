@@ -12,12 +12,10 @@ public class MedicalImaging {
     UUID id;
     @Column(nullable = false, unique = true)
     String name;
-
     public MedicalImaging(UUID id, String name) {
         this.id = id;
         this.name = name;
     }
-
     public MedicalImaging() {
     }
 

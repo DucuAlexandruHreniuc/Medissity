@@ -31,7 +31,8 @@ public class MedicalImagingController {
 
     @PostMapping("/add")
     public String addMedicalImaging(Model model,
-                                          @RequestParam("medicalImaging_name") String medicalImagingName) {
+                                          @RequestParam("medicalImaging_name") String medicalImagingNameInput) {
+        String medicalImagingName = medicalImagingNameInput.substring(0, 1).toUpperCase() + medicalImagingNameInput.substring(1);
         Optional<MedicalImaging> preExistingImaging = medicalImagingRepositoryJpa.findByName(medicalImagingName);
         if(preExistingImaging.isPresent()){
             model.addAttribute("error", "Investigația de imagistică \""+ medicalImagingName + "\" există deja în listă");
@@ -53,15 +54,21 @@ public class MedicalImagingController {
         return "diagnostic/medicalImaging/editForm";
     }
     @PostMapping("/edit")
-    public RedirectView addMedicalImaging(Model model,
+    public String addMedicalImaging(Model model,
                                           @RequestParam("medicalImaging_id") UUID medicalImagingId,
                                           @RequestParam("medicalImaging_name") String updatedName)
     {
-
+        String updatedNameCapitalized = updatedName.substring(0, 1).toUpperCase() + updatedName.substring(1);
+        Optional<MedicalImaging> preExistingMedicalImaging = medicalImagingRepositoryJpa.findByName(updatedNameCapitalized);
+        if(preExistingMedicalImaging.isPresent()){
+            model.addAttribute("error", "Numele \""+ updatedNameCapitalized + "\" există deja în listă");
+            return "diagnostic/error";
+        }
+        else{
         Optional<MedicalImaging> medicalImaging = medicalImagingRepositoryJpa.findById(medicalImagingId);
-        medicalImaging.get().setName(updatedName);
-        medicalImagingRepositoryJpa.save(medicalImaging.get());
-        return new RedirectView("/imaging/");
+        medicalImaging.get().setName(updatedNameCapitalized);
+        medicalImagingRepositoryJpa.save(medicalImaging.get());}
+        return "redirect:/imaging/edit/" + medicalImagingId;
     }
     @GetMapping("/delete/{id}")
     public RedirectView deleteMedicalImaging(Model model, @PathVariable("id") UUID medicalImagingId) {

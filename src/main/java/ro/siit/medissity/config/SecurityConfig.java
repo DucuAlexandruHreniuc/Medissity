@@ -14,6 +14,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/diagnostics/")
                 .and().oauth2Login();
+        http.cors().and().csrf().disable();
         return http.build();
     }
 }
