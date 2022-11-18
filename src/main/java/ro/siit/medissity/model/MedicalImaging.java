@@ -9,9 +9,9 @@ import java.util.UUID;
 @Entity(name = "medical_imaging")
 public class MedicalImaging {
     @Id
-    UUID id;
+    private UUID id;
     @Column(nullable = false, unique = true)
-    String name;
+    private String name;
     public MedicalImaging(UUID id, String name) {
         this.id = id;
         this.name = name;
