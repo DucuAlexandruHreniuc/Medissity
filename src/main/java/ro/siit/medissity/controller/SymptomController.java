@@ -68,7 +68,7 @@ public class SymptomController {
         Optional<Symptom> symptom = symptomRepositoryJpa.findById(symptomId);
         symptom.get().setName(updatedNameCapitalized);
         symptomRepositoryJpa.save(symptom.get());}
-        return "redirect:/symptoms/edit/" + symptomId;
+        return "redirect:/symptoms/";
     }
     @GetMapping("/delete/{id}")
     public RedirectView deleteSymptom(Model model, @PathVariable("id") UUID symptomId) {

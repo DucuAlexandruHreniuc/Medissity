@@ -282,7 +282,7 @@ public class DiagnosticController {
         Optional<Diagnostic> diangostic = diagnosticRepositoryJpa.findById(diagnosticId);
         diangostic.get().setName(updatedNameCapitalized);
         diagnosticRepositoryJpa.save(diangostic.get());}
-        return "redirect:/diagnostics/edit/" + diagnosticId;
+        return "redirect:/diagnostics/";
     }
     @GetMapping("/delete/{id}")
     public RedirectView deleteDiagnostic(Model model, @PathVariable("id") UUID diagnosticId) {

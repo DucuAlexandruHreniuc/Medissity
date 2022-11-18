@@ -68,7 +68,7 @@ public class MedicalImagingController {
         Optional<MedicalImaging> medicalImaging = medicalImagingRepositoryJpa.findById(medicalImagingId);
         medicalImaging.get().setName(updatedNameCapitalized);
         medicalImagingRepositoryJpa.save(medicalImaging.get());}
-        return "redirect:/imaging/edit/" + medicalImagingId;
+        return "redirect:/imaging/";
     }
     @GetMapping("/delete/{id}")
     public RedirectView deleteMedicalImaging(Model model, @PathVariable("id") UUID medicalImagingId) {

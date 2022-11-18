@@ -68,7 +68,7 @@ public class MedicalTestController {
         Optional<MedicalTest> medicalTest = medicalTestRepositoryJpa.findById(medicalTestId);
         medicalTest.get().setName(updatedNameCapitalized);
         medicalTestRepositoryJpa.save(medicalTest.get());}
-        return "redirect:/medical-tests/edit/" + medicalTestId;
+        return "redirect:/medical-tests/";
     }
     @GetMapping("/delete/{id}")
     public RedirectView deleteMedicalTest(Model model, @PathVariable("id") UUID medicalTestId) {
