@@ -28,176 +28,176 @@ public class DiagnosticController {
     /**
      * Hardcoded objects in repository
      */
-    @PostConstruct
-    private void postConstructDiagnostic() {
-        String [] diagnosticNames = {"Trombofilia",
-                "Gastrita cronică",
-                "Gastrita acută",
-                "Gastroduodenita",
-                "Maculopatie optică/Degenerescența maculară (DMLV)",
-                "Hiperprolactinemia",
-                "Maculopatia exudativa OD",
-                "Astigmatism hipermetropic OD",
-                "Status post toxoplasmoză",
-                "Hipertensiune arterială(HTA)",
-                "Tulburări paroxistice",
-                "Polipi endometriali",
-                "Tiroidită subacută",
-                "Tiroidită acută",
-                "Distiroidie",
-                "Gușă toxică",
-                "Gusa netoxică",
-                "Boala Plummer",
-                "Steatoză hepatică",
-                "Keratoză pilară",
-                "Prurigo cronic",
-                "Otita externă stângă/dreaptă",
-                "Laringita acută",
-                "Rinita acută sau cronică alergică",
-                "Hemipareza facială",
-                "Prostatita acută sau cronică",
-                "Mixedemul primar",
-                "Psoriazis",
-                "Dislipidemia mixtă",
-                "Hipoacuzia stângă/dreaptă",
-                "Diareea si gastro-enterita posibil infectioasa",
-                "Dermita",
-                "Sindromul ovarelor polichistice",
-                "Bacteria E.Coli în funcție de localizare",
-                "Sindromul de citoliză hepatică",
-                "Discopatia lombară",
-                "Vulvovaginita",
-                "Exocervicita",
-                "Nevralgia intercostală ",
-                "Tulburările alimentare",
-                "Metroragia",
-                "Hipotrofia ponderală" ,
-                "Prolapsul rectal" ,
-                "Hipotiroidismul" ,
-                "Hipertiroidismul",
-                "Tiroidita autoimună cronică"
-        };
-        for (String diagnosticName : diagnosticNames) {
-            Diagnostic d0 = new Diagnostic(UUID.randomUUID(), diagnosticName);
-            diagnosticRepositoryJpa.save(d0);
-        }
-    }
-
-    @PostConstruct
-    private void postConstructMedicalTest() {
-        String [] medicalTestNames = {"Hemoleucograma" ,
-                "Fibrinogen" ,
-                "VSH" ,
-                "PRC" ,
-                "Biochimie" ,
-                "Coagulograma" ,
-                "Antigenul carcino-embrionar" ,
-                "TGP" ,
-                "Creatinina" ,
-                "LDL colesterol" ,
-                "Sumar urina" ,
-                "Uree I" ,
-                "Ionograma " ,
-                "INR" ,
-                "Urocultura" ,
-                "Factor reumatoid" ,
-                "DHEA-S " ,
-                "Prolactina" ,
-                "LH" ,
-                "Biopsie din pielea scalpului" ,
-                "Magneziemie   " ,
-                "Examen hematologic" ,
-                "Examen micologic direct Insamantarea pe mediu de cultura selectiv (m. Sabouraud)  " ,
-                "Glicemia " ,
-                "Antifungigrama (pentru formele cronice rezistente)" ,
-                "Dozari hormonale" ,
-                "Test sarcina " ,
-                "Testul HIV" ,
-                "IDR – PPD" ,
-                "Teste imunologice" ,
-                "VDRL" ,
-                "TPHA cantitative"
-        };
-        for (String medicalTestName : medicalTestNames) {
-            MedicalTest m0 = new MedicalTest(UUID.randomUUID(), medicalTestName);
-            medicalTestRepositoryJpa.save(m0);
-        }
-    }
-
-    @PostConstruct
-    private void postConstructMedicalImaging() {
-        String [] medicalImagingNames = {"Rezonanta magnetica nucleara (RMN)" ,
-                "Tomografie Computerizata (CT)" ,
-                "Scintigrafie" ,
-                "Ecografie abdominala" ,
-                "Elastografie hepatica" ,
-                "EEG epilepsie" ,
-                "Angiografie" ,
-                "Urografie" ,
-                "Histerosalpingografie" ,
-                "Radiologie Conventionala si Digitala" ,
-                "Mamografie digitala" ,
-                "Ecografie transvaginala" ,
-                "Osteodensitometrie",
-                "Endoscopie digestiva superioara si inferioara " ,
-                "Rectosigmoidoscopie" ,
-                "Ecografie musculo-scheletala" ,
-                "Bronhoscopie " ,
-                "Ecografie Doppler " ,
-                "Bariu pasaj " ,
-                "Radioiodocaptare " ,
-                "Videocapsula endoscopica " ,
-                "Manometrie" ,
-                "Ecografie mamara"
-        };
-        for (String medicalImagingName : medicalImagingNames) {
-            MedicalImaging i0 = new MedicalImaging(UUID.randomUUID(), medicalImagingName);
-            medicalImagingRepositoryJpa.save(i0);
-        }
-    }
-
-    @PostConstruct
-    private void postConstructSymptom() {
-        String [] symptomNames = {"Tahicardie, nespecificata" ,
-                "Bradicardie, nespecificata" ,
-                "Palpitatii" ,
-                "Alte anomalii de ritm cardiac si nespecificate" ,
-                "Murmur cardiac benign si anodin" ,
-                "Murmur cardiac, nespecificat" ,
-                "Alte zgomote cardiace" ,
-                "Gangrena, neclasificata altundeva" ,
-                "Citirea tensiunii arteriale crescute, fara diagnostic de hipertensiune" ,
-                "Citirea tensiunii arteriale scazute nespecifice" ,
-                "Epistaxis" ,
-                "Hemoragie provenita din gat" ,
-                "Hemoptizie" ,
-                "Hemoragie provenind din alte localizari ale cailor respiratorii" ,
-                "Hemoragia provenind din caile respiratorii, nespecificata" ,
-                "Tuse" ,
-                "Dispnee" ,
-                "Stridor" ,
-                "Respiratia suieratoare" ,
-                "Respiratia periodica" ,
-                "Hiperventilatie" ,
-                "Respiratie pe gura" ,
-                "Sughit" ,
-                "Stranut" ,
-                "Alte anomaliile de respiratie si nespecificate" ,
-                "Durere in faringo-laringeana" ,
-                "Durerea in piept la respiratie" ,
-                "Durerea precordiala" ,
-                "Alta durere in piept" ,
-                "Durere in piept,nespecificata" ,
-                "Asfixie" ,
-                "Pleurezie" ,
-                "Stop respirator" ,
-                "Sputa anormala"
-        };
-        for (String symptomName : symptomNames) {
-            Symptom s0 = new Symptom(UUID.randomUUID(), symptomName);
-            symptomRepositoryJpa.save(s0);
-        }
-    }
+//    @PostConstruct
+//    private void postConstructDiagnostic() {
+//        String [] diagnosticNames = {"Trombofilia",
+//                "Gastrita cronică",
+//                "Gastrita acută",
+//                "Gastroduodenita",
+//                "Maculopatie optică/Degenerescența maculară (DMLV)",
+//                "Hiperprolactinemia",
+//                "Maculopatia exudativa OD",
+//                "Astigmatism hipermetropic OD",
+//                "Status post toxoplasmoză",
+//                "Hipertensiune arterială(HTA)",
+//                "Tulburări paroxistice",
+//                "Polipi endometriali",
+//                "Tiroidită subacută",
+//                "Tiroidită acută",
+//                "Distiroidie",
+//                "Gușă toxică",
+//                "Gusa netoxică",
+//                "Boala Plummer",
+//                "Steatoză hepatică",
+//                "Keratoză pilară",
+//                "Prurigo cronic",
+//                "Otita externă stângă/dreaptă",
+//                "Laringita acută",
+//                "Rinita acută sau cronică alergică",
+//                "Hemipareza facială",
+//                "Prostatita acută sau cronică",
+//                "Mixedemul primar",
+//                "Psoriazis",
+//                "Dislipidemia mixtă",
+//                "Hipoacuzia stângă/dreaptă",
+//                "Diareea si gastro-enterita posibil infectioasa",
+//                "Dermita",
+//                "Sindromul ovarelor polichistice",
+//                "Bacteria E.Coli în funcție de localizare",
+//                "Sindromul de citoliză hepatică",
+//                "Discopatia lombară",
+//                "Vulvovaginita",
+//                "Exocervicita",
+//                "Nevralgia intercostală ",
+//                "Tulburările alimentare",
+//                "Metroragia",
+//                "Hipotrofia ponderală" ,
+//                "Prolapsul rectal" ,
+//                "Hipotiroidismul" ,
+//                "Hipertiroidismul",
+//                "Tiroidita autoimună cronică"
+//        };
+//        for (String diagnosticName : diagnosticNames) {
+//            Diagnostic d0 = new Diagnostic(UUID.randomUUID(), diagnosticName);
+//            diagnosticRepositoryJpa.save(d0);
+//        }
+//    }
+//
+//    @PostConstruct
+//    private void postConstructMedicalTest() {
+//        String [] medicalTestNames = {"Hemoleucograma" ,
+//                "Fibrinogen" ,
+//                "VSH" ,
+//                "PRC" ,
+//                "Biochimie" ,
+//                "Coagulograma" ,
+//                "Antigenul carcino-embrionar" ,
+//                "TGP" ,
+//                "Creatinina" ,
+//                "LDL colesterol" ,
+//                "Sumar urina" ,
+//                "Uree I" ,
+//                "Ionograma " ,
+//                "INR" ,
+//                "Urocultura" ,
+//                "Factor reumatoid" ,
+//                "DHEA-S " ,
+//                "Prolactina" ,
+//                "LH" ,
+//                "Biopsie din pielea scalpului" ,
+//                "Magneziemie   " ,
+//                "Examen hematologic" ,
+//                "Examen micologic direct Insamantarea pe mediu de cultura selectiv (m. Sabouraud)  " ,
+//                "Glicemia " ,
+//                "Antifungigrama (pentru formele cronice rezistente)" ,
+//                "Dozari hormonale" ,
+//                "Test sarcina " ,
+//                "Testul HIV" ,
+//                "IDR – PPD" ,
+//                "Teste imunologice" ,
+//                "VDRL" ,
+//                "TPHA cantitative"
+//        };
+//        for (String medicalTestName : medicalTestNames) {
+//            MedicalTest m0 = new MedicalTest(UUID.randomUUID(), medicalTestName);
+//            medicalTestRepositoryJpa.save(m0);
+//        }
+//    }
+//
+//    @PostConstruct
+//    private void postConstructMedicalImaging() {
+//        String [] medicalImagingNames = {"Rezonanta magnetica nucleara (RMN)" ,
+//                "Tomografie Computerizata (CT)" ,
+//                "Scintigrafie" ,
+//                "Ecografie abdominala" ,
+//                "Elastografie hepatica" ,
+//                "EEG epilepsie" ,
+//                "Angiografie" ,
+//                "Urografie" ,
+//                "Histerosalpingografie" ,
+//                "Radiologie Conventionala si Digitala" ,
+//                "Mamografie digitala" ,
+//                "Ecografie transvaginala" ,
+//                "Osteodensitometrie",
+//                "Endoscopie digestiva superioara si inferioara " ,
+//                "Rectosigmoidoscopie" ,
+//                "Ecografie musculo-scheletala" ,
+//                "Bronhoscopie " ,
+//                "Ecografie Doppler " ,
+//                "Bariu pasaj " ,
+//                "Radioiodocaptare " ,
+//                "Videocapsula endoscopica " ,
+//                "Manometrie" ,
+//                "Ecografie mamara"
+//        };
+//        for (String medicalImagingName : medicalImagingNames) {
+//            MedicalImaging i0 = new MedicalImaging(UUID.randomUUID(), medicalImagingName);
+//            medicalImagingRepositoryJpa.save(i0);
+//        }
+//    }
+//
+//    @PostConstruct
+//    private void postConstructSymptom() {
+//        String [] symptomNames = {"Tahicardie, nespecificata" ,
+//                "Bradicardie, nespecificata" ,
+//                "Palpitatii" ,
+//                "Alte anomalii de ritm cardiac si nespecificate" ,
+//                "Murmur cardiac benign si anodin" ,
+//                "Murmur cardiac, nespecificat" ,
+//                "Alte zgomote cardiace" ,
+//                "Gangrena, neclasificata altundeva" ,
+//                "Citirea tensiunii arteriale crescute, fara diagnostic de hipertensiune" ,
+//                "Citirea tensiunii arteriale scazute nespecifice" ,
+//                "Epistaxis" ,
+//                "Hemoragie provenita din gat" ,
+//                "Hemoptizie" ,
+//                "Hemoragie provenind din alte localizari ale cailor respiratorii" ,
+//                "Hemoragia provenind din caile respiratorii, nespecificata" ,
+//                "Tuse" ,
+//                "Dispnee" ,
+//                "Stridor" ,
+//                "Respiratia suieratoare" ,
+//                "Respiratia periodica" ,
+//                "Hiperventilatie" ,
+//                "Respiratie pe gura" ,
+//                "Sughit" ,
+//                "Stranut" ,
+//                "Alte anomaliile de respiratie si nespecificate" ,
+//                "Durere in faringo-laringeana" ,
+//                "Durerea in piept la respiratie" ,
+//                "Durerea precordiala" ,
+//                "Alta durere in piept" ,
+//                "Durere in piept,nespecificata" ,
+//                "Asfixie" ,
+//                "Pleurezie" ,
+//                "Stop respirator" ,
+//                "Sputa anormala"
+//        };
+//        for (String symptomName : symptomNames) {
+//            Symptom s0 = new Symptom(UUID.randomUUID(), symptomName);
+//            symptomRepositoryJpa.save(s0);
+//        }
+//    }
 
     @GetMapping(value = "/")
 

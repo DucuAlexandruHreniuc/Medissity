@@ -17,11 +17,11 @@ public class PolicyController {
     @Autowired
     private PolicyRepositoryJpa policyRepositoryJpa;
 
-    @PostConstruct
-    private void postConstructPolicy(){
-        Policy p1 = new Policy(UUID.randomUUID(),"Exemplu","http://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf");
-        policyRepositoryJpa.saveAndFlush(p1);
-    }
+//    @PostConstruct
+//    private void postConstructPolicy(){
+//        Policy p1 = new Policy(UUID.randomUUID(),"Exemplu","http://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf");
+//        policyRepositoryJpa.saveAndFlush(p1);
+//    }
 
     @GetMapping(value = "/")
     public String getPolicies(Model model){

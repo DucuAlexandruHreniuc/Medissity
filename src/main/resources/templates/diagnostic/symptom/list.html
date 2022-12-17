@@ -116,7 +116,7 @@
                 <center><i class="fa-solid fa-pen" title="Editează" ></i></center>
             </a>
             </td>
-            <td> <a onclick="return confirm('Confirmi ștergerea?')" title="Șterge" th:href="@{/symptoms/delete/{id}(id=${symptom.id})}">
+            <td> <a onclick="return confirm('Dacă simptomul este atribuit unui diagnostic ștergerea nu va putea avea loc. Confirmi ștergerea?')" title="Șterge" th:href="@{/symptoms/delete/{id}(id=${symptom.id})}">
                 <center><i class="fa-solid fa-trash" style="color:#c4443c"></i></center>
             </a>
             </td>
